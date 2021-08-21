@@ -38,6 +38,9 @@ const widgetsRoutes = require("./routes/widgets");
 const mapsRoutes = require("./routes/maps");
 const mapsNewRoutes = require("./routes/maps_new");
 const mapsId = require("./routes/maps_id");
+const userProfile = require("./routes/profile");
+const parks = require("./routes/parks");
+const parksId = require("./routes/parks_id");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -46,6 +49,10 @@ app.use("/api/widgets", widgetsRoutes(db));
 app.use("/maps", mapsRoutes(db));
 app.use("/maps/new", mapsNewRoutes(db));
 app.use("/maps", mapsId(db));
+app.use("/profile", userProfile(db));
+app.use("/parks", parks(db));
+app.use("/parks", parksId(db));
+
 // Note: mount other resources here, using the same pattern above
 
 
