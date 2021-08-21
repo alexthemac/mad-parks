@@ -4,7 +4,7 @@
 
 - As a user (logged in OR not) I want to be able to view a map ( from initial list ).
 
-- As a user given a point when clicked on I want to see more information( desc, title, image etc.).
+- As a user given a park when clicked on I want to see more information( desc, title, image etc.).
 
 - As a authenticated user I should be able to create maps.
 
