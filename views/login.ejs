@@ -12,11 +12,20 @@
   </head>
 
   <body>
-
     <%- include('partials/_header') %>
+    <section class="body-container">
+      <span class="section-title">
+        Please log in below
+      </span>
+      <form method="" action="">
+        <label for="Email">Email</label><br>
+        <input type="text" id="email" name="Email" placeholder="Johnsmith@email.com"><br>
 
-    <h1>LOGIN </h1>
+        <label for="Password">Password</label><br>
+        <input type="text" id="password" name="Password" placeholder="******"><br><br>
 
-    <h1>TEXT FIELD</h1>
+        <input type="submit" value="Submit">
+      </form>
+    </section>
   </body>
 </html>
