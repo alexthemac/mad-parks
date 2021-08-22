@@ -44,7 +44,7 @@ const registerPost = function (db) {
     //Grab email and password entered into form
     const email = req.body['email'];
     const password = req.body['password'];
-    const newUser = "UserC" //TEMPORARY
+    const newUser = req.body['name']
     const id = "id" + newUser; //TEMPORARY
 
 
