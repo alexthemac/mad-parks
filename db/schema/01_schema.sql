@@ -1,3 +1,8 @@
+DROP TABLE IF EXISTS users CASCADE;
+DROP TABLE IF EXISTS parks CASCADE;
+DROP TABLE IF EXISTS maps CASCADE;
+
+
 CREATE TABLE users (
   id SERIAL PRIMARY KEY NOT NULL,
   name VARCHAR(255) NOT NULL,
@@ -18,8 +23,8 @@ CREATE TABLE parks (
   street_address VARCHAR(255) NOT NULL,
   city VARCHAR(255) NOT NULL,
   province VARCHAR(255) NOT NULL,
-  coordinates_long DECIMAL(9, 6)
-  coordinates_lat DECIMAL(8, 6)
+  coordinates_long DECIMAL(9, 6),
+  coordinates_lat DECIMAL(8, 6),
   description TEXT,
   basketball_nets BOOLEAN,
   tennis_courts BOOLEAN,
@@ -30,5 +35,5 @@ CREATE TABLE parks (
   water_fountain BOOLEAN,
   dog_park BOOLEAN,
   creator_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  map_id INTEGER REFERENCES mpas(id) ON DELETE CASCADE
+  map_id INTEGER REFERENCES maps(id) ON DELETE CASCADE
 );
