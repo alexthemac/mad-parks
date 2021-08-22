@@ -60,10 +60,10 @@ const userProfile = require("./routes/profile");
 const parks = require("./routes/parks");
 const parksNewRoutes = require("./routes/parks_new");
 const parksId = require("./routes/parks_id");
-// const login = require("./routes/login");
-const register = require("./routes/register");
+
 
 const {loginGet, loginPost} = require("./routes/login");
+const {registerGet, registerPost} = require("./routes/register");
 
 
 // Mount all resource routes
@@ -78,8 +78,10 @@ app.use("/parks", parks(db));
 app.use("/parks/new", parksNewRoutes(db));
 app.use("/parks", parksId(db));
 app.use("/login", loginGet(db));
-app.use("/login", loginPost(db)); //This might cause issues?
-app.use("/register", register(db));
+app.use("/login", loginPost(db));
+app.use("/register", registerGet(db));
+app.use("/register", registerPost(db));
+
 // Note: mount other resources here, using the same pattern above
 
 
@@ -95,5 +97,5 @@ app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
 
-//Export user databse to be used in login.js
+//Export user databse to be used in login.js, register.js
 module.exports = users;

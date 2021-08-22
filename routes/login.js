@@ -12,6 +12,9 @@ const loginGet = function (db) {
 
     const templateVars = {
 
+
+
+
     }
     // db.query(`SELECT * FROM users;`)
     //   .then(data => {
@@ -42,9 +45,10 @@ const users = {
   }
 }
 
-
+//!!!Need to update with users from DB as opposed to users object!!!///
 const loginPost = function (db) {
   router.post("/", (req, res) => {
+    //Grab email and password entered into form
     const email = req.body['email'];
     const password = req.body['password'];
 
@@ -71,5 +75,5 @@ const loginPost = function (db) {
   })
   return router;
 }
-
+//Exports for use in server.js
 module.exports = {loginGet, loginPost};
