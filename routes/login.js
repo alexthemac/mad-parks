@@ -45,7 +45,7 @@ const users = {
   }
 }
 
-
+//!!!Need to update with users from DB as opposed to users object!!!///
 const loginPost = function (db) {
   router.post("/", (req, res) => {
     const email = req.body['email'];
