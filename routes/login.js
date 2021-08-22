@@ -2,7 +2,8 @@ const express = require('express');
 const router  = express.Router();
 
 const { getUserByEmail, getUserPassword, getUserID } = require('../helpers');
-const users = require('../servers');
+const users = require('../servers'); //Replace with database stuff once ready.
+
 
 const loginGet = function (db) {
   router.get("/", (req, res) => {
