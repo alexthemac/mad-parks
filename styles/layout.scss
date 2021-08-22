@@ -61,5 +61,12 @@ $mouse-over-highlight-color: rgb(238, 35, 12);
   max-height: 300px;
 }
 
+#trending-maps {
+  display: flex;
+}
+.map-icon {
+  height: 5em;
+  width: 9em;
+}
 
 

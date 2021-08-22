@@ -46,3 +46,12 @@
 .map-container {
   max-height: 300px;
 }
+
+#trending-maps {
+  display: flex;
+}
+
+.map-icon {
+  height: 5em;
+  width: 9em;
+}

@@ -19,11 +19,17 @@
         Please Register in below
       </span>
       <form method="POST" action="/login">
+        <label for="Name">Name</label><br>
+        <input type="text" id="name" name="name" placeholder="Enter name"><br>
+
         <label for="Email">Email</label><br>
         <input type="text" id="email" name="email" placeholder="Enter email"><br>
 
         <label for="Password">Password</label><br>
-        <input type="text" id="password" name="password" placeholder="Password"><br><br>
+        <input type="text" id="password" name="password" placeholder="Password"><br>
+
+        <label for="Confirm Password">Confirm Password</label><br>
+        <input type="text" id="confirmedPassword" name="confirmedPassword" placeholder="Password"><br><br>
 
         <input type="submit" value="Submit">
       </form>
