@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Home Page</title>
+    <title>Register</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
@@ -12,10 +13,20 @@
   </head>
 
   <body>
-
     <%- include('partials/_header') %>
+    <section class="body-container">
+      <span class="section-title">
+        Please Register in below
+      </span>
+      <form method="POST" action="/login">
+        <label for="Email">Email</label><br>
+        <input type="text" id="email" name="email" placeholder="Enter email"><br>
 
-    <h1>Register Page</h1>
+        <label for="Password">Password</label><br>
+        <input type="text" id="password" name="password" placeholder="Password"><br><br>
 
+        <input type="submit" value="Submit">
+      </form>
+    </section>
   </body>
 </html>
