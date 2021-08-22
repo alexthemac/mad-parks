@@ -12,9 +12,6 @@ const loginGet = function (db) {
 
     const templateVars = {
 
-
-
-
     }
     // db.query(`SELECT * FROM users;`)
     //   .then(data => {
