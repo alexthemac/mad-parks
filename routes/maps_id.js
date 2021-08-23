@@ -8,6 +8,7 @@ module.exports = (db) => {
     const userId = req.cookies.user_id;
     const mapId = req.params.id
     const templateVars = {
+<<<<<<< HEAD
       userId,
       mapId
     };
@@ -16,6 +17,10 @@ module.exports = (db) => {
     //query db for spefic map information
     ///////
 
+=======
+      mapId: req.params.id,
+    }
+>>>>>>> 7af310da4ab927f2998dbde1c10eb51e27875f10
     // db.query(`SELECT * FROM users;`)
     //   .then(data => {
     //     const users = data.rows;
@@ -28,5 +33,6 @@ module.exports = (db) => {
     //   });
     res.render('maps_id', templateVars);
   });
+
   return router;
 };

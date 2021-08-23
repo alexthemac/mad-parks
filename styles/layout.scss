@@ -92,8 +92,12 @@ $mouse-over-highlight-color: rgb(238, 35, 12);//delete?
 .profile-column {
   display: flex;
   flex-direction: column;
-  max-width: 13em;;
+  max-width: 13em;
 }
+#mapid {
+  height: 400px;
+}
+
 
 .profile-icon {
   display: flex;
