@@ -5,6 +5,10 @@ module.exports = (db) => {
   router.get("/", (req, res) => {
 
     const userId = req.cookies.user_id;
+
+    if (!userId) {
+      return res.redirect("maps");
+    }
     const templateVars = {
       userId,
     };
