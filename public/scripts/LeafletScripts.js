@@ -12,4 +12,8 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
   accessToken: 'pk.eyJ1IjoiYWxleHRoZW1hYyIsImEiOiJja3NvdmMxbHgwY3kxMm9xaDE2bmpta2Z5In0.Ffh1H3NBCGodmYzkhmhJCw'
 }).addTo(mymap);
 
-
+mymap.on('click',function(e){
+  lat = e.latlng.lat;
+  lon = e.latlng.lng;
+  L.marker([lat,lon]).addTo(mymap);
+});
