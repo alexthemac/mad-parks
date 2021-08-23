@@ -89,8 +89,12 @@ app.use("/register", registerPost(db));
 
 // Home page
 app.get("/", (req, res) => {
+  const userId = req.cookies.user_id;
+  const templateVars = {
+    userId
+  }
 // res.cookie("test cookie", 1)
-  res.render("index");
+  res.render("index", templateVars);
 });
 
 app.listen(PORT, () => {
