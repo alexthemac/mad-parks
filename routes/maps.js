@@ -4,6 +4,16 @@ const router  = express.Router();
 module.exports = (db) => {
 
   router.get("/", (req, res) => {
+
+
+    const userId = req.cookies.user_id;
+    const templateVars = {
+      userId,
+    };
+    ////////
+    //query for all available maps
+    /////
+
     // db.query(`SELECT * FROM users;`)
     //   .then(data => {
     //     const users = data.rows;
@@ -14,7 +24,7 @@ module.exports = (db) => {
     //       .status(500)
     //       .json({ error: err.message });
     //   });
-    res.render('maps');
+    res.render('maps', templateVars);
   });
   return router;
 };

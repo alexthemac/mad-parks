@@ -1,20 +1,14 @@
-const express = require('express');
-const router  = express.Router();
+const express = require("express");
+const router = express.Router();
 
 module.exports = (db) => {
-
   router.get("/", (req, res) => {
-    // db.query(`SELECT * FROM users;`)
-    //   .then(data => {
-    //     const users = data.rows;
-    //     res.json({ users });
-    //   })
-    //   .catch(err => {
-    //     res
-    //       .status(500)
-    //       .json({ error: err.message });
-    //   });
-    res.render('maps_new');
+    const userId = req.cookies.user_id;
+    const templateVars = {
+      userId,
+    };
+
+    res.render("maps_new", templateVars);
   });
   return router;
 };

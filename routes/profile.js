@@ -1,14 +1,18 @@
-const express = require('express');
-const router  = express.Router();
+const express = require("express");
+const router = express.Router();
 
 module.exports = (db) => {
-
   router.get("/", (req, res) => {
 
-    //get user from cookie
+    const userId = req.cookies.user_id;
     const templateVars = {
-      userId: "user3000"
-    }
+      userId,
+    };
+
+    /////
+    //Query db for maps associated with this profile
+    ////
+
     // db.query(`SELECT * FROM users;`)
     //   .then(data => {
     //     const users = data.rows;
@@ -19,7 +23,7 @@ module.exports = (db) => {
     //       .status(500)
     //       .json({ error: err.message });
     //   });
-    res.render('user_profile', templateVars);
+    res.render("user_profile", templateVars);
   });
   return router;
 };

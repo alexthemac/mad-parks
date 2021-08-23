@@ -6,9 +6,15 @@ const { getUserByEmail} = require('../helpers');
 const registerGet = function (db) {
   router.get("/", (req, res) => {
 
+    const userId = req.cookies.user_id;
     const templateVars = {
+      userId,
+    };
 
-    }
+    ///////
+    // insert db statment
+    //////
+
     // db.query(`SELECT * FROM users;`)
     //   .then(data => {
     //     const users = data.rows;

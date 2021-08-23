@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Home Page</title>
+    <title>Profile</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
@@ -13,10 +13,26 @@
   </head>
 
   <body>
-
     <%- include('partials/_header') %>
-
-    <h1>PROFILE</h1>
-    <h1><%= userId %></h1>
+    <section class="profile-body-container">
+      <section class="profile-column">
+        <div class="profile-icon">Create a Map</div>
+        <ul>
+          <li>Crucifix pickled 8-bit sunt, authentic in tofu adaptogen organic officia kickstarter quis ugh plaid</li>
+          <li>La croix lo-fi hexagon, austin mumblecore knausgaard minim cupidatat magna</li>
+          <li>3 wolf moon commodo locavore dolor tempor plaid skateboard fam venmo quis four loko lorem</li>
+          <li>DIY tbh pitchfork next level neutra schlitz voluptate kinfolk bespoke</li>
+        </ul>
+      </section>
+      <section class="profile-column">
+        <div class="profile-icon">My Maps</div>
+        <ul>
+          <li>Chillwave +1 glossier tbh tousled enim aliquip skateboard jean shorts viral ea</li>
+          <li>Wolf microdosing lumbersexual portland</li>
+          <li>Occaecat skateboard messenger bag mumblecore commodo dolor magna whatever brooklyn.</li>
+          <li>I'm baby whatever et edison bulb kickstarter listicle drinking vinegar typewriter fingerstache mumblecore sriracha church-key quis scenester sunt art party</li>
+        </ul>
+      </section>
+    </section>
   </body>
 </html>

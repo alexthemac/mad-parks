@@ -4,16 +4,24 @@
       Mad Parks
     </div>
     <div id="header-container-right">
-      <div class="header-container-button">
-        <form  action="/register" method="GET">
-          <button type="submit" class="btn btn-outline-dark">Register</button>
-        </form>
+      <% if (!userId){ %>
 
-      </div>
-      <div class="header-container-button">
-        <form action="/login" method="GET">
-          <button type="submit" class="btn btn-outline-dark">Log In</button>
-        </form>
+        <div class="header-container-button">
+          <form  action="/register" method="GET">
+            <button type="submit" class="btn btn-outline-dark">Register</button>
+          </form>
+
+        </div>
+        <div class="header-container-button">
+          <form action="/login" method="GET">
+            <button type="submit" class="btn btn-outline-dark">Log In</button>
+          </form>
+        <% } else { %>
+          <div class="header-container-button">
+            <form action="/logout" method="POST">
+              <button type="submit" class="btn btn-outline-dark">Log Out</button>
+            </form>
+          <% } %>
 
 
       </div>

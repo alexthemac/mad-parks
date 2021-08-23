@@ -5,9 +5,17 @@ module.exports = (db) => {
 
   router.get("/:id", (req, res) => {
 
+    const userId = req.cookies.user_id;
+    const parkId = req.params.id;
+
     const templateVars = {
-      parkId: req.params.id
-    }
+      userId,
+      parkId
+    };
+    /////////
+    //query db for specifc park info
+    /////////
+
     // db.query(`SELECT * FROM users;`)
     //   .then(data => {
     //     const users = data.rows;

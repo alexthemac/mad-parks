@@ -29,22 +29,16 @@
   color: #151f68;
 }
 
-.header-container-button:hover {
-  color: #ee230c;
-}
-
 .body-container {
   padding: 1em;
   background-color: #eeeeee;
 }
 
 .section-title {
+  display: flex;
+  align-items: center;
   font-size: 1.5rem;
   color: black;
-}
-
-.map-container {
-  max-height: 300px;
 }
 
 #trending-maps {
@@ -54,4 +48,39 @@
 .map-icon {
   height: 5em;
   width: 9em;
+  margin: 1em;
+  border-radius: 0.5em;
+  background-color: #a8e87b;
+}
+
+#filter-button {
+  margin: 1em;
+}
+
+.map-container {
+  max-height: 300px;
+}
+
+.profile-body-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.profile-column {
+  display: flex;
+  flex-direction: column;
+  max-width: 13em;
+}
+
+.profile-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 5em;
+  width: 13em;
+  margin: 1em;
+  border-radius: 0.5em;
+  font-size: 1em;
+  color: white;
+  background-color: #34a0a4;
 }

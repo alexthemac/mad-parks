@@ -62,12 +62,13 @@ const parksNewRoutes = require("./routes/parks_new");
 const parksId = require("./routes/parks_id");
 
 
+
 const {loginGet, loginPost} = require("./routes/login");
 const {registerGet, registerPost} = require("./routes/register");
+const logoutPost = require("./routes/logout");
 
 
 // Mount all resource routes
-// Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
 app.use("/maps", mapsRoutes(db));
@@ -79,15 +80,14 @@ app.use("/parks/new", parksNewRoutes(db));
 app.use("/parks", parksId(db));
 app.use("/login", loginGet(db));
 app.use("/login", loginPost(db));
+app.use("/logout", logoutPost(db));
 app.use("/register", registerGet(db));
 app.use("/register", registerPost(db));
 
-// Note: mount other resources here, using the same pattern above
+
 
 
 // Home page
-// Warning: avoid creating more routes in this file!
-// Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
 // res.cookie("test cookie", 1)
   res.render("index");
