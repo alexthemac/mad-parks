@@ -1,4 +1,3 @@
-// load .env data into process.env
 require('dotenv').config();
 
 // Web server config
@@ -33,24 +32,8 @@ app.use("/styles", sass({
 }));
 app.use(express.static("public"));
 
-//Temporary user object
-const users = {
-  "userA": {
-    id: "idUserA",
-    email: "a@a.com",
-    password: "a"
-  },
- "userB": {
-    id: "idUserB",
-    email: "b@b.com",
-    password: "b"
-  }
-}
-
-
 
 // Separated Routes for each Resource
-// Note: Feel free to replace the example routes below with your own
 const usersRoutes = require("./routes/users");
 const widgetsRoutes = require("./routes/widgets");
 const mapsRoutes = require("./routes/maps");
@@ -93,7 +76,6 @@ app.get("/", (req, res) => {
   const templateVars = {
     userId
   }
-// res.cookie("test cookie", 1)
   res.render("index", templateVars);
 });
 
@@ -101,5 +83,4 @@ app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
 
-//Export user databse to be used in login.js, register.js
-module.exports = users;
+
