@@ -1,35 +1,30 @@
 const express = require('express');
 const router  = express.Router();
+const {getParksWithMapId} = require('../database.js');
 
 module.exports = (db) => {
-
   router.get("/:id", (req, res) => {
 
+    //Get userId from cookie
     const userId = req.cookies.user_id;
     const mapId = req.params.id
-    const templateVars = {
-      userId,
-      mapId
-    }
 
+    getParksWithMapId(mapId, db)
+    .then((result) => {
 
-    ////////
-    //query db for spefic map information
-    ///////
+      console.log(result);
 
+      //Store array from query in templateVars
+      const templateVars = {
+        userId,
+        mapId,
+        parksArray: result
+      };
 
+      res.render('maps_id', templateVars);
 
-    // db.query(`SELECT * FROM users;`)
-    //   .then(data => {
-    //     const users = data.rows;
-    //     res.json({ users });
-    //   })
-    //   .catch(err => {
-    //     res
-    //       .status(500)
-    //       .json({ error: err.message });
-    //   });
-    res.render('maps_id', templateVars);
+    })
+
   });
 
   return router;

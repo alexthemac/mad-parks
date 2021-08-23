@@ -1,29 +1,34 @@
 const express = require("express");
 const router = express.Router();
+const {getParksWithCreatorId} = require('../database.js');
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
-
+    //Get userId from cookie
     const userId = req.cookies.user_id;
-    const templateVars = {
-      userId,
-    };
 
-    /////
-    //Query db for maps associated with this profile
-    ////
+    //Call function from database.js file
+    getParksWithCreatorId(userId, db)
+    .then((result) => {
 
-    // db.query(`SELECT * FROM users;`)
-    //   .then(data => {
-    //     const users = data.rows;
-    //     res.json({ users });
-    //   })
-    //   .catch(err => {
-    //     res
-    //       .status(500)
-    //       .json({ error: err.message });
-    //   });
-    res.render("user_profile", templateVars);
+      console.log(result);
+
+      //Store array from query in templateVars
+      const templateVars = {
+        userId,
+        parksArray: result
+      };
+
+      //Pass to user_profile
+      res.render("user_profile", templateVars);
+      return result;
+
+      //we have the parks information but we need the maps information now.
+
+
+
+    });
   });
+
   return router;
 };

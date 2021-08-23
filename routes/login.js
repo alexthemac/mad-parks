@@ -25,7 +25,7 @@ const loginGet = function (db) {
 //Use module export instead..
 const users = {
   userA: {
-    id: "idUserA",
+    id: "1",
     email: "a@a.com",
     password: "a",
   },
