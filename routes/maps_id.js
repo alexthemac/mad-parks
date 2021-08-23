@@ -6,7 +6,7 @@ module.exports = (db) => {
   router.get("/:id", (req, res) => {
 
     const templateVars = {
-      mapId: req.params.id
+      mapId: req.params.id,
     }
     // db.query(`SELECT * FROM users;`)
     //   .then(data => {
@@ -20,5 +20,6 @@ module.exports = (db) => {
     //   });
     res.render('maps_id', templateVars);
   });
+
   return router;
 };
