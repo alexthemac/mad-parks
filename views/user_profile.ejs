@@ -16,7 +16,9 @@
     <%- include('partials/_header') %>
     <section class="profile-body-container">
       <section class="profile-column">
-        <div class="profile-icon">Create a Map</div>
+        <form action="maps/new" method="GET">
+        <button type="submit" class="btn btn-secondary btn-lg">Create Map</button>
+        </form>
         <ul>
           <li>Crucifix pickled 8-bit sunt, authentic in tofu adaptogen organic officia kickstarter quis ugh plaid</li>
           <li>La croix lo-fi hexagon, austin mumblecore knausgaard minim cupidatat magna</li>
@@ -25,7 +27,8 @@
         </ul>
       </section>
       <section class="profile-column">
-        <div class="profile-icon">My Maps</div>
+        <!-- <div class="profile-icon">My Maps</div> -->
+        <button type="button" class="btn btn-secondary btn-lg">My Maps</button>
         <ul>
           <li>Chillwave +1 glossier tbh tousled enim aliquip skateboard jean shorts viral ea</li>
           <li>Wolf microdosing lumbersexual portland</li>

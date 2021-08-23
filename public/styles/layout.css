@@ -64,6 +64,7 @@
 .profile-body-container {
   display: flex;
   justify-content: space-evenly;
+  padding: 1em;
 }
 
 .profile-column {

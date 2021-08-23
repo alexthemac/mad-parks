@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 
 const { getUserByEmail, getUserPassword } = require("../helpers");
-// const users = require('../server'); //Replace with database stuff once ready.
 
 const loginGet = function (db) {
   router.get("/", (req, res) => {
@@ -22,15 +21,15 @@ const loginGet = function (db) {
   return router;
 };
 
-//Use module export instead..
+
 const users = {
   userA: {
-    id: "idUserA",
+    id: "1",
     email: "a@a.com",
     password: "a",
   },
   userB: {
-    id: "idUserB",
+    id: "2",
     email: "b@b.com",
     password: "b",
   },
