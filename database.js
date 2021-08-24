@@ -1,13 +1,14 @@
-const getUserWithEmail = function (email) {
+const getUserWithEmail = function (email, db) {
   //Define query
   const queryString = `
   SELECT *
   FROM users
   WHERE email = $1
   `;
+
   //Return promise for query
   return (
-    pool
+    db
       .query(queryString, [email])
       .then((result) => {
         //If result is not found inside DB, return null
@@ -31,10 +32,8 @@ const getUserWithId = function (id, db) {
   FROM users
   WHERE id = $1
   `;
+
   //Return promise for query
-
-  // return pool GET RID OF?
-
   return (
     db
       .query(queryString, [id])
@@ -86,7 +85,11 @@ const getParksWithCreatorId = function (id, db) {
 const getParksWithMapId = function (id, db) {
   //Define query
   const queryString = `
+<<<<<<< HEAD
   SELECT parks.id as parks_id, park_name, maps.id as map_id, maps.name as map_name, coordinates_long, coordinates_lat
+=======
+  SELECT parks.id as park_id, park_name, maps.id as map_id, maps.name as map_name, coordinates_long, coordinates_lat
+>>>>>>> e98ba07fdf7cf91a061a0a7ff6c45e9155626933
   FROM parks
   JOIN maps ON maps.id = map_id
   WHERE maps.id = $1;
@@ -118,7 +121,6 @@ const getMapsWithCreatorId = function (id, db) {
   FROM maps
   JOIN users ON users.id = creator_id
   WHERE creator_id = $1;
-
   `;
   return (
     db
@@ -139,10 +141,73 @@ const getMapsWithCreatorId = function (id, db) {
   );
 };
 
+const getUserWithEmailOrName = function (name, email, db) {
+  //Define query
+  const queryString = `
+  SELECT *
+  FROM users
+  WHERE name = $1 OR email = $2
+  `;
+
+  //Return promise for query
+  return (
+    db
+      .query(queryString, [name, email])
+      .then((result) => {
+        //If result is not found inside DB, return null
+        if (result.rows.length === 0) {
+          return null;
+        }
+        //If result is found, return the array for the user
+        return result.rows;
+      })
+      //Console log error if can't connect to DB
+      .catch((err) => {
+        console.log(err.message);
+      })
+  );
+};
+
+const addUserToUsers = function (name, email, password, db) {
+  //Define query
+  const queryString = `
+  INSERT INTO users
+  (name, email, password)
+  VALUES
+  ($1, $2, $3)
+  RETURNING *;
+  `;
+
+  //Return promise for query
+  return (
+    db
+      .query(queryString, [name, email, password])
+      .then((result) => {
+        //If result is not found inside DB, return null
+        if (result.rows.length === 0) {
+          return null;
+        }
+        //If result is found, return the array for the user
+        return result.rows;
+      })
+      //Console log error if can't connect to DB
+      .catch((err) => {
+        console.log(err.message);
+      })
+  );
+}
+
+
+
+
+
+
 module.exports = {
   getUserWithEmail,
   getUserWithId,
   getParksWithCreatorId,
   getParksWithMapId,
   getMapsWithCreatorId,
+  getUserWithEmailOrName,
+  addUserToUsers
 };
