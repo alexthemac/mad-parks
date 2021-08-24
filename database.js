@@ -111,6 +111,34 @@ const getParksWithMapId = function (id, db) {
   );
 };
 
+const getParksForMarkerWithMapId = function (id, db) {
+  //Define query
+  const queryString = `
+  SELECT coordinates_long, coordinates_lat
+  FROM parks
+  JOIN maps ON maps.id = map_id
+  WHERE maps.id = $1;
+  `;
+  return (
+    db
+      .query(queryString, [id])
+      .then((result) => {
+        // console.log(result.rows[0])
+
+        //If result is not found inside DB, return null
+        if (result.rows.length === 0) {
+          return null;
+        }
+        //If result is found, return the object for the user
+        return result.rows;
+      })
+      //Console log error if can't connect to DB
+      .catch((err) => {
+        console.log(err.message);
+      })
+  );
+};
+
 const getMapsWithCreatorId = function (id, db) {
   //Define query
   const queryString = `
@@ -145,4 +173,5 @@ module.exports = {
   getParksWithCreatorId,
   getParksWithMapId,
   getMapsWithCreatorId,
+  getParksForMarkerWithMapId
 };

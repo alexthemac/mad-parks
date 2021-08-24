@@ -1,25 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Map</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+<head>
+  <title>Map</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+
+  <!-- Leaflet stuff for maps below -->
+  <%- include('partials/_leafletApiLinks') %>
+    <!-- Leaflet stuff for maps above -->
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
-  </head>
-  <body>
-    <%- include('partials/_header') %>
+</head>
+
+<body>
+  <%- include('partials/_header') %>
     <section class="body-container">
       <span class="section-title"> Take a look at map: <%= mapId %> </span>
-      <div class="map-contrainer">
-
-        <img src="https://assets-global.website-files.com/6050a76fa6a633d5d54ae714/609147088669907f652110b0_report-an-issue(about-maps).jpeg" alt=" PLACE HPOLDER">
-        <!-- width=100% height="600" -->
-      </div>
+      <div id="mapid"></div>
     </section>
-  </body>
+</body>
+<!-- Leaflet stuff for maps below -->
+<script script type="text/javascript" src="/scripts/map_idScripts.js"></script>
+<script>
+    const parks = <%- JSON.stringify(parksArray) %>;
+    parks.forEach(park => {
+      lat = park.coordinates_lat;
+      lon = park.coordinates_long;
+      L.marker([lat,lon]).addTo(mymap);
+    });
+</script>
+<!-- Leaflet stuff for maps above -->
+
 </html>
