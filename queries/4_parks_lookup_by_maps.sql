@@ -4,4 +4,3 @@ FROM parks
 JOIN maps ON maps.id = map_id
 WHERE maps.id = 14;
 -- replace where with desired map pulled from xxx:
-
