@@ -35,7 +35,7 @@ const registerGet = function (db) {
 const registerPost = function (db) {
   router.post("/", (req, res) => {
     //Grab email and password entered into form
-    const userName = req.body['name']
+    const userName = req.body['name'];
     const email = req.body['email'];
     const password = req.body['password'];
     const confirmedPassword = req.body['confirmedPassword'];

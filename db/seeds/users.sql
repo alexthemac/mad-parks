@@ -1,10 +1,2 @@
-insert into users (name, email, password) values ( 'Eula Dibbin', 'edibbin0@loc.gov', '90eBFqp');
-insert into users (name, email, password) values ( 'Cicely Sibbet', 'csibbet1@illinois.edu', 'RqZjrU61w21');
-insert into users (name, email, password) values ( 'Shelley Castanos', 'scastanos2@amazon.co.jp', 'RwsLCpGpP0I4');
 insert into users (name, email, password) values ( 'Constantia Lachaize', 'clachaize3@cdbaby.com', 'QZSzqaq8iY');
 insert into users (name, email, password) values ( 'Marcy McShirrie', 'mmcshirrie4@blogger.com', '4aOdUDx');
-insert into users (name, email, password) values ( 'Gasper Tuffley', 'gtuffley5@tinyurl.com', 'PulOaydyJ');
-insert into users (name, email, password) values ( 'Cate Garroway', 'cgarroway6@springer.com', 'ZYkk2xmJc1VV');
-insert into users (name, email, password) values ( 'Gill Broggio', 'gbroggio7@ft.com', 'bTaTsYhcXVL');
-insert into users (name, email, password) values ( 'Curtice Learoyd', 'clearoyd8@wunderground.com', 'EKxJ3f4PTvx0');
-insert into users (name, email, password) values ( 'Dionis Delooze', 'ddelooze9@geocities.jp', 'qzqs8A');

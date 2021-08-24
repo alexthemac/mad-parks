@@ -1,5 +1,5 @@
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
 
 module.exports = (db) => {
 
@@ -12,21 +12,20 @@ module.exports = (db) => {
       userId,
       parkId
     };
-    /////////
-    //query db for specifc park info
-    /////////
 
-    // db.query(`SELECT * FROM users;`)
-    //   .then(data => {
-    //     const users = data.rows;
-    //     res.json({ users });
-    //   })
-    //   .catch(err => {
-    //     res
-    //       .status(500)
-    //       .json({ error: err.message });
-    //   });
-    res.render('parks_id', templateVars);
-  });
-  return router;
-};
+    getParksWithMapId(mapId, db)
+      .then((result) => {
+
+        console.log(result);
+
+        //Store array from query in templateVars
+        const templateVars = {
+          userId,
+          mapId,
+          parksArray: result
+        };
+        res.render('parks_id', templateVars);
+      });
+    });
+    return router;
+  };
