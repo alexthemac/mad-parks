@@ -85,11 +85,7 @@ const getParksWithCreatorId = function (id, db) {
 const getParksWithMapId = function (id, db) {
   //Define query
   const queryString = `
-<<<<<<< HEAD
-  SELECT parks.id as parks_id, park_name, maps.id as map_id, maps.name as map_name, coordinates_long, coordinates_lat
-=======
   SELECT parks.id as park_id, park_name, maps.id as map_id, maps.name as map_name, coordinates_long, coordinates_lat
->>>>>>> e98ba07fdf7cf91a061a0a7ff6c45e9155626933
   FROM parks
   JOIN maps ON maps.id = map_id
   WHERE maps.id = $1;
@@ -196,7 +192,6 @@ const addUserToUsers = function (name, email, password, db) {
       })
   );
 }
-
 
 
 
