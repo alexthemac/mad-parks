@@ -221,9 +221,71 @@ const addUserToUsers = function (name, email, password, db) {
   );
 }
 
+const addParkToParks = function (park, db) {
+  //Define values
+  const values = [
+  park.park_name,
+  park.street_address,
+  park.city,
+  park.province,
+  park.description,
+  park.coordinates_long,
+  park.coordinates_lat,
+  park.basketball_nets,
+  park.tennis_courts,
+  park.soccer_nets,
+  park.skatepark,
+  park.workout_equipment,
+  park.bathrooms,
+  park.water_fountain,
+  park.dog_park,
+  park.creator_id,
+  park.map_id
+  ]
 
+  //Define query
+  const queryString = `
+  INSERT INTO parks (
+  park_name,
+  street_address,
+  city,
+  province,
+  description,
+  coordinates_long,
+  coordinates_lat,
+  basketball_nets,
+  tennis_courts,
+  soccer_nets,
+  skatepark,
+  workout_equipment,
+  bathrooms,
+  water_fountain,
+  dog_park,
+  creator_id,
+  map_id
+  )
+  VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17)
+  RETURNING *;
+  `;
 
-
+  //Return promise for query
+  return (
+    db
+      .query(queryString, values)
+      .then((result) => {
+        //If result is not found inside DB, return null
+        if (result.rows.length === 0) {
+          return null;
+        }
+        //If result is found, return the array for the user
+        return result.rows;
+      })
+      //Console log error if can't connect to DB
+      .catch((err) => {
+        console.log(err.message);
+      })
+  );
+}
 
 module.exports = {
   getUserWithEmail,
@@ -233,5 +295,6 @@ module.exports = {
   getMapsWithCreatorId,
   getParksForMarkerWithMapId,
   getUserWithEmailOrName,
-  addUserToUsers
+  addUserToUsers,
+  addParkToParks
 };
