@@ -21,7 +21,7 @@
 <body>
   <%- include('partials/_header') %>
     <section class="body-container">
-      <span class="section-title"> Take a look at map: <%= mapId %> </span>
+      <span class="section-title"> Take a look at map: <%= JSON.stringify(parksArray[0].map_name) %> </span>
       <div id="mapid"></div>
     </section>
 </body>

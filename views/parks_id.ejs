@@ -1,23 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Park</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+<head>
+  <title>Park</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+
+  <!-- Leaflet stuff for maps below -->
+  <%- include('partials/_leafletApiLinks') %>
+    <!-- Leaflet stuff for maps above -->
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
-  </head>
+</head>
 
-  <body>
+<body>
+  <%- include('partials/_header') %>
+    <section class="body-container">
+      <span class="section-title"> Take a look at park: <%= JSON.stringify(parksArray) %> </span>
+      <div id="parkId"></div>
+    </section>
+</body>
+<!-- Leaflet stuff for maps below -->
+<script script type="text/javascript" src="/scripts/map_idScripts.js"></script>
+<script>
+  const parks = <% - JSON.stringify(parksArray) %>;
+  parks.forEach(park => {
+    lat = park.coordinates_lat;
+    lon = park.coordinates_long;
+    L.marker([lat, lon]).addTo(mymap);
+  });
+</script>
+<!-- Leaflet stuff for maps above -->
 
-    <%- include('partials/_header') %>
-
-    <h1>ParkID Page</h1>
-    <%= parkId %>
-    <h1>show park here</h1>
-  </body>
 </html>
