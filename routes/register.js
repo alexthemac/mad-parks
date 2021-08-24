@@ -31,24 +31,10 @@ const registerGet = function (db) {
   return router;
 }
 
-//Use module export instead..
-const users = {
-  "userA": {
-    id: "idUserA",
-    email: "a@a.com",
-    password: "a"
-  },
- "userB": {
-    id: "idUserB",
-    email: "b@b.com",
-    password: "b"
-  }
-}
-
 const registerPost = function (db) {
   router.post("/", (req, res) => {
     //Grab email and password entered into form
-    const userName = req.body['name']
+    const userName = req.body['name'];
     const email = req.body['email'];
     const password = req.body['password'];
     const confirmedPassword = req.body['confirmedPassword'];

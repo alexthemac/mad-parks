@@ -41,13 +41,14 @@ const mapsNewRoutes = require("./routes/maps_new");
 const mapsId = require("./routes/maps_id");
 const userProfile = require("./routes/profile");
 const parks = require("./routes/parks");
-const parksNewRoutes = require("./routes/parks_new");
+// const parksNewRoutes = require("./routes/parks_new");
 const parksId = require("./routes/parks_id");
 
 
 
 const {loginGet, loginPost} = require("./routes/login");
 const {registerGet, registerPost} = require("./routes/register");
+const {parksNewGet, parksNewPost} = require("./routes/parks_new");
 const logoutPost = require("./routes/logout");
 
 
@@ -59,7 +60,8 @@ app.use("/maps/new", mapsNewRoutes(db));
 app.use("/maps", mapsId(db));
 app.use("/profile", userProfile(db));
 app.use("/parks", parks(db));
-app.use("/parks/new", parksNewRoutes(db));
+app.use("/parks/new", parksNewGet(db));
+app.use("/parks/new", parksNewPost(db));
 app.use("/parks", parksId(db));
 app.use("/login", loginGet(db));
 app.use("/login", loginPost(db));

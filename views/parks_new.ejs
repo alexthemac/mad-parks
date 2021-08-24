@@ -2,7 +2,9 @@
 <html lang="en">
   <head>
     <title>New Park</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
 
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
@@ -13,9 +15,85 @@
   </head>
 
   <body>
-
     <%- include('partials/_header') %>
+    <section class="body-container">
+      <form action="/parks/new" method="POST">
 
-    <h1>New Parks Page</h1>
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="floatingInput" placeholder="Park Name">
+          <label for="floatingInput">Park Name</label>
+        </div>
+
+
+        <input type="text" placeholder="Park Name" id="park_name" name="park_name"><br><br>
+        <input type="text" placeholder="Street Address" id="street_address" name="street_address"><br><br>
+        <input type="text" placeholder="City" id="city" name="city"><br><br>
+        <input type="text" placeholder="Province" id="province" name="province"><br><br>
+        <input type="text" placeholder="Description" id="description" name="description"><br><br>
+
+        <input type="text" placeholder="Lat" id="coordinates_lat" name="coordinates_lat"><br><br>
+        <input type="text" placeholder="Long" id="coordinates_long" name="coordinates_long"><br><br>
+
+
+
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="basketball_nets"/>
+          <label class="form-check-label" for="flexSwitchCheckChecked"
+            >Basketball Nets</label>
+        </div>
+
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="tennis_courts"/>
+          <label class="form-check-label" for="flexSwitchCheckChecked"
+            >Tennis Courts</label>
+        </div>
+
+
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="soccer_nets"/>
+          <label class="form-check-label" for="flexSwitchCheckChecked"
+            >Soccer Nets</label>
+        </div>
+
+
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="skatepark"/>
+          <label class="form-check-label" for="flexSwitchCheckChecked"
+            >Skate Park</label>
+        </div>
+
+
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="workout_equipment"/>
+          <label class="form-check-label" for="flexSwitchCheckChecked"
+            >Workout Equipment</label>
+        </div>
+
+
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="bathrooms"/>
+          <label class="form-check-label" for="flexSwitchCheckChecked"
+            >Bathrooms</label>
+        </div>
+
+
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="water_fountain" />
+          <label class="form-check-label" for="flexSwitchCheckChecked"
+            >Water Fountain</label>
+        </div>
+
+
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="dog_park"/>
+          <label class="form-check-label" for="flexSwitchCheckChecked"
+            >Dog Park</label>
+        </div>
+
+
+
+        <button type="submit" class="btn btn-secondary btn-lg">Create Park</button>
+      </form>
+    </section>
   </body>
 </html>
