@@ -197,7 +197,6 @@ const addUserToUsers = function (name, email, password, db) {
 
 
 
-
 module.exports = {
   getUserWithEmail,
   getUserWithId,

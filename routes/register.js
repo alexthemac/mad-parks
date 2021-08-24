@@ -45,7 +45,6 @@ const users = {
   }
 }
 
-//!!!Need to update with users from DB as opposed to users object!!!///
 const registerPost = function (db) {
   router.post("/", (req, res) => {
     //Grab email and password entered into form
