@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
-const { getUserByEmail, getUserPassword } = require("../helpers");
+// const { getUserByEmail, getUserPassword } = require("../helpers");
+const { getUserWithEmail } = require('../database.js');
 
 const loginGet = function (db) {
   router.get("/", (req, res) => {
@@ -42,35 +43,34 @@ const loginPost = function (db) {
     const email = req.body["email"];
     const password = req.body["password"];
 
-    const currentUser = getUserByEmail(email, users);
+    //Display error if email is blank or password is blank
+    if (!email || !password) {
+      return res.status(400).send(`One of the fields is blank. Please <a href='/login'>try again</a>`);
+    };
 
-    //Displays error if email has not been registered
-    if (!currentUser) {
-      //Send status code and display error message with one line:
-      return res
-        .status(403)
-        .send(
-          `Email not registered. Please <a href='/register'>register</a> or <a href='/login'>try again</a>`
-        );
-    }
+    //Checks to see if email in DB
+    getUserWithEmail(email, db)
+    .then((result) => {
 
-    //Displays error if email has been registered, but wrong password is entered
-    if (currentUser && getUserPassword(currentUser, users) !== password) {
-      //Send status code and display error message with one line:
-      return res
-        .status(403)
-        .send(
-          `Password does not match records. Please <a href='/login'>try again</a>`
-        );
-    }
+      //If email not in DB, tell them to retry login
+      if(!result) {
+        return res.status(400).send(`Email has not been registered. Please <a href='/login'>try again</a>`);
+      }
 
-    //If the email has been registered and password is correct, update cookie with user_id to id of email entered
-    const id = currentUser["id"];
+      //If password does not match DB password, tell them to retry login
+      if (result.password != password) {
+        return res.status(400).send(`Password does not match our records. Please <a href='/login'>try again</a>`);
+      }
 
-    //Sets a user_id cookie to the login id
-    res.cookie("user_id", id);
-    res.redirect("/profile");
+      //If everything matches DB, set cookie and redirect to profile
+      res.cookie("user_id", result.id);
+
+      res.redirect("/profile");
+
+    });
+
   });
+
   return router;
 };
 //Exports for use in server.js

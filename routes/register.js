@@ -2,6 +2,7 @@ const express = require('express');
 const router  = express.Router();
 
 const { getUserByEmail} = require('../helpers');
+const { getUserWithEmailOrName, addUserToUsers } = require('../database.js');
 
 const registerGet = function (db) {
   router.get("/", (req, res) => {
@@ -44,40 +45,39 @@ const users = {
   }
 }
 
-//!!!Need to update with users from DB as opposed to users object!!!///
 const registerPost = function (db) {
   router.post("/", (req, res) => {
     //Grab email and password entered into form
+    const userName = req.body['name']
     const email = req.body['email'];
     const password = req.body['password'];
-    const newUser = req.body['name']
-    const id = "id" + newUser; //TEMPORARY
-
-
-    // const id = generateRandomString(); //Creates a unique id for the new user
+    const confirmedPassword = req.body['confirmedPassword'];
 
     //Display error if email is blank or password is blank
-    if (!email || !password) {
-      //Send status code and display error message with one line:
-      return res.status(400).send(`Not a valid email or password. Please <a href='/register'>try again</a>`);
-    }
-    //Display error if email is already in user "database"
-    if (getUserByEmail(email, users)) {
-      //Send status code and display error message with one line:
-      return res.status(400).send(`Email already exists. Please <a href='/login'>login</a>`);
-    }
-    //TEMPORARY Adds the new created user to the users object
-    users[newUser] = {
-      id,
-      email,
-      password
+    if (!email || !password || !userName || !confirmedPassword) {
+      return res.status(400).send(`One of the fields is blank. Please <a href='/register'>try again</a>`);
     };
 
-    console.log(users);
+    //Display error if password and confirmed password do not match
+    if (password != confirmedPassword) {
+      return res.status(400).send(`Passwords do not match. Please <a href='/register'>try again</a>`);
+    }
 
-    //Sets a user_id cookie to the newly created id
-    res.cookie('user_id', id); //Might be an issue if there is already a cookie? Maybe overwrites it?
-    res.redirect('/profile');
+    //Checks to see if user name or email already registered
+    getUserWithEmailOrName(userName, email, db)
+    .then((result) => {
+      //If not already registered, send to entered info to db
+      if(!result) {
+        addUserToUsers(userName, email, password, db)
+        .then(() =>
+        //Redirect to profile once done
+        res.redirect('/login')); //REPLACE THIS WITH /maps was working if login doesn't
+        return;
+      }
+      //If user name or email already registered, display error message page
+      return res.status(400).send(`User name or email already registered. Please <a href='/register'>try again</a>`);
+    });
+
   })
   return router;
 }
