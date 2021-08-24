@@ -6,25 +6,18 @@ const { addParkToParks } = require('../database.js');
 
 const parksNewGet = function (db) {
   router.get("/", (req, res) => {
-
+    //Get userId from cookie
     const userId = req.cookies.user_id;
+
+    //Redirect to login if user not logged in. Only logged in users can create parks
+    if (!userId) {
+      return res.redirect("../login");
+    }
+
     const templateVars = {
       userId,
     };
-    ///////////
-    // db insert statment
-    //////////
 
-    // db.query(`SELECT * FROM users;`)
-    //   .then(data => {
-    //     const users = data.rows;
-    //     res.json({ users });
-    //   })
-    //   .catch(err => {
-    //     res
-    //       .status(500)
-    //       .json({ error: err.message });
-    //   });
     res.render('parks_new', templateVars);
   });
   return router;
@@ -32,6 +25,7 @@ const parksNewGet = function (db) {
 
 const parksNewPost = function (db) {
   router.post("/", (req, res) => {
+
     const park_name = req.body['park_name'];
     const street_address = req.body['street_address'];
     const city = req.body['city'];
@@ -50,7 +44,7 @@ const parksNewPost = function (db) {
       bathrooms: false,
       water_fountain: false,
       dog_park: false,
-      creator_id: 1, //REPLACE WITH ACTUAL CREATOR
+      creator_id: req.cookies.user_id,
       map_id: null, //REPLACE WITH MAP ID
     }
 
