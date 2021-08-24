@@ -23,10 +23,13 @@
       <section class="profile-column">
         <div class="section-title">
           Maps
-          <button type="button" class="btn btn-secondary btn-lg">+</button>
+          <form action="/maps/new" method="GET">
+          <button type="submit" class="btn btn-secondary btn-lg">+</button>
+          </form>
         </div>
         <ul>
-          <% for (let i = 0; i < mapsArray.length; i++) { %>
+          <% if (mapsArray) { %> <% for (let i = 0; i < mapsArray.length; i++) {
+          %>
 
           <form action="/maps/<%= mapsArray[i].map_id %>" method="GET">
             <button type="submit" class="btn btn-outline-dark">
@@ -34,17 +37,20 @@
             </button>
           </form>
 
-          <% } %>
+          <% } %> <% } %>
         </ul>
       </section>
 
       <section class="profile-column">
         <div class="section-title">
           Parks
-          <button type="button" class="btn btn-secondary btn-lg">+</button>
+          <form action="/parks/new" method="GET">
+          <button type="submit" class="btn btn-secondary btn-lg">+</button>
+          </form>
         </div>
         <ul>
-          <% for (let i = 0; i < parksArray.length; i++) { %>
+          <% if (parksArray) { %> <% for (let i = 0; i < parksArray.length; i++)
+          { %>
 
           <form action="/parks/<%= parksArray[i].park_id %>" method="GET">
             <button type="submit" class="btn btn-outline-dark">
@@ -52,7 +58,7 @@
             </button>
           </form>
 
-          <% } %>
+          <% } %> <% } %>
         </ul>
       </section>
     </section>
