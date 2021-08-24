@@ -38,13 +38,13 @@ const getUserWithId = function (id, db) {
     db
       .query(queryString, [id])
       .then((result) => {
-        // console.log(result.rows[0])
 
         //If result is not found inside DB, return null
         if (result.rows.length === 0) {
           return null;
         }
         //If result is found, return the object for the user
+        console.log("from inside func@ db.js", result.rows[0])
         return result.rows[0];
       })
       //Console log error if can't connect to DB

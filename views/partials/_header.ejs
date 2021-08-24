@@ -5,23 +5,28 @@
     </div>
     <div id="header-container-right">
       <% if (!userId){ %>
-
         <div class="header-container-button">
           <form  action="/register" method="GET">
             <button type="submit" class="btn btn-outline-dark">Register</button>
           </form>
-
         </div>
         <div class="header-container-button">
           <form action="/login" method="GET">
             <button type="submit" class="btn btn-outline-dark">Log In</button>
           </form>
+        </div>
         <% } else { %>
-          <div class="header-container-button">
-            <form action="/logout" method="POST">
-              <button type="submit" class="btn btn-outline-dark">Log Out</button>
-            </form>
-          <% } %>
+        <div class="header-container-button">
+          <form action="/logout" method="POST">
+            <button type="submit" class="btn btn-outline-dark">Log Out</button>
+          </form>
+        </div>
+        <div class="header-container-button">
+          <form action="/profile" method="GET">
+            <button type="submit" class="btn btn-outline-dark"><%= userId %></button>
+          </form>
+        </div>
+        <% } %>
 
 
       </div>

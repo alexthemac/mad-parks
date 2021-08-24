@@ -31,19 +31,6 @@ const registerGet = function (db) {
   return router;
 }
 
-//Use module export instead..
-const users = {
-  "userA": {
-    id: "idUserA",
-    email: "a@a.com",
-    password: "a"
-  },
- "userB": {
-    id: "idUserB",
-    email: "b@b.com",
-    password: "b"
-  }
-}
 
 const registerPost = function (db) {
   router.post("/", (req, res) => {
