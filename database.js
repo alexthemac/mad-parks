@@ -111,7 +111,7 @@ const getParksWithMapId = function (id, db) {
 const getParkWithParksId = function (id, db) {
   //Define query
   const queryString = `
-  SELECT parks.id as parks_id, park_name, coordinates_long, coordinates_lat street_address, city, province, coordinates_long, coordinates_lat, description, basketball_nets, tennis_courts, soccer_nets, skatepark, workout_equipment, bathrooms, water_fountain, dog_park
+  SELECT *
   FROM parks
   WHERE parks.id = $1;
   `;
@@ -365,6 +365,35 @@ const addParkToMaps = function (name, email, password, db) {
   );
 };
 
+const insertFavMap = function (userId, mapId, db) {
+  //Define query
+  const queryString = `
+  INSERT INTO favorites
+  (user_id, map_id)
+  VALUES
+  ($1, $2)
+  RETURNING *;
+  `;
+
+  //Return promise for query
+  return (
+    db
+      .query(queryString, [userId, mapId])
+      .then((result) => {
+        //If result is not found inside DB, return null
+        if (result.rows.length === 0) {
+          return null;
+        }
+        //If result is found, return the array for the user
+        console.log('result:', result.rows)
+        return result.rows;
+      })
+      //Console log error if can't connect to DB
+      .catch((err) => {
+        console.log(err.message);
+      })
+  );
+};
 
 
 
@@ -381,5 +410,6 @@ module.exports = {
   addParkToParks,
   getAllMaps,
   getAllParks,
-  addParkToMaps
+  addParkToMaps,
+  insertFavMap
 };

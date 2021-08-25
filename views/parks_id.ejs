@@ -22,10 +22,85 @@
     <section class="body-container">
       <span class="section-title"> Take a look at park: <%= park.park_name %> </span>
       <div id="mapid"></div>
+      <article>
+        <h3>Details</h3>
+        <ul>
+          <li>Street Address: <%= park.street_address %>
+          </li>
+          <li>City: <%= park.city %>
+          </li>
+          <li>State: <%= park.province %>
+          </li>
+          <li>Description: <%= park.description %>
+          </li>
+        </ul>
+        <article>
+          <h3>Gallery</h3>
+          <img src="<%= park.park_image %>" alt="IIIIIIIMAAAAAAAGEEEEE">
+        </article>
+        <article>
+          <h3>Ameneties</h3>
+          <ul>
+            <li>Dog Park:
+              <% if (park.dog_park) { %>
+                Yes
+              <% } else { %>
+                No
+              <% } %>
+            </li>
+            <li>Basketball Nets:
+              <% if (park.basketball_nets) { %>
+                Yes
+              <% } else { %>
+                No
+              <% } %>
+            </li>
+            <li>Tennis Courts:
+              <% if (park.tennis_courts) { %>
+                Yes
+              <% } else { %>
+                No
+              <% } %>
+            </li>
+            <li>Soccer Nets:
+              <% if (park.soccer_nets) { %>
+                Yes
+              <% } else { %>
+                No
+              <% } %>
+            </li>
+            <li>Skate Park:
+              <% if (park.skatepark) { %>
+                Yes
+              <% } else { %>
+                No
+              <% } %>
+            </li>
+            <li>Workout Equipment:
+              <% if (park.workout_equipment) { %>
+                Yes
+              <% } else { %>
+                No
+              <% } %>
+            </li>
+            <li>Bathrooms:
+              <% if (park.bathrooms) { %>
+                Yes
+              <% } else { %>
+                No
+              <% } %>
+            </li>
+            <li>Water Fountain:
+              <% if (park.water_fountain) { %>
+                Yes
+              <% } else { %>
+                No
+              <% } %>
+            </li>
+          </ul>
+        </article>
+      </article>
     </section>
-    <article>
-      <%= JSON.stringify(park) %>
-    </article>
 </body>
 <!-- Leaflet stuff for maps below -->
 <script script type="text/javascript" src="/scripts/map_idScripts.js"></script>
