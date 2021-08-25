@@ -45,13 +45,12 @@ const parks = require("./routes/parks");
 const parksId = require("./routes/parks_id");
 
 
-
 const {loginGet, loginPost} = require("./routes/login");
 const {registerGet, registerPost} = require("./routes/register");
 const {parksNewGet, parksNewPost} = require("./routes/parks_new");
 const logoutPost = require("./routes/logout");
 const { mapsNewGet, mapsNewPost } = require("./routes/maps_new");
-
+const map_fav = require("./routes/map_fav")
 
 // Mount all resource routes
 app.use("/api/users", usersRoutes(db));
@@ -71,7 +70,7 @@ app.use("/login", loginPost(db));
 app.use("/logout", logoutPost(db));
 app.use("/register", registerGet(db));
 app.use("/register", registerPost(db));
-
+app.use("/map_fav", map_fav(db));
 
 
 

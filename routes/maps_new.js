@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { getAllParks } = require("../database.js");
+const { getAllParks, addMapToMaps, getCurrentParkInfo, addParkToParks} = require("../database.js");
 
 
 const mapsNewGet = function (db) {
@@ -8,7 +8,7 @@ const mapsNewGet = function (db) {
     const userId = req.cookies.user_id;
 
     getAllParks(db).then((result) => {
-      console.log(`\n INSIDE MAPS>JS ${JSON.stringify(result)}`);
+      // console.log(`\n INSIDE MAPS>JS ${JSON.stringify(result)}`);
 
       const templateVars = {
         userId,
@@ -24,16 +24,35 @@ const mapsNewGet = function (db) {
 const mapsNewPost = function (db) {
   router.post("/", (req, res) => {
 
-    console.log("NEW MAP CREATED (NOT REALLY JUST PLACEHOLDER")
-    // console.log(JSON.stringify(req.body));
-    // console.log(req.body['map']);
-    console.log(req.body);
+    const creator_Id = req.cookies.user_id;
+    const map_name = req.body['map_name'];
+    const map_description = req.body['map_description'];
 
+    //Add the newly created map to the maps table
+    addMapToMaps(map_name, map_description, creator_Id, db)
+    .then((result) => {
 
+      //Store the newly created map id (used to update parkInfo map_id value)
+      const mapID = result[0]['id'];
 
+      // Loop through each property from req.body and only grab the parks that are check marked
+      for (const property in req.body) {
+        if (property != 'map_name' && property != 'map_description') {
 
+          const bodyParkId = property;
 
-
+          // Grab the current parks info from the DB
+          getCurrentParkInfo(bodyParkId, db)
+          .then((result) => {
+            const parkInfo = result;
+            //Update parkInfo map id key from null to map id from the newly created map
+            parkInfo['map_id'] = mapID;
+            addParkToParks(parkInfo, db);
+          })
+        }
+      }
+      res.redirect(`/maps/${mapID}`);
+    })
   });
   return router;
 };
