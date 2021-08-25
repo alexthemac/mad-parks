@@ -29,6 +29,11 @@ const mapsNewPost = function (db) {
     // console.log(req.body['map']);
     console.log(req.body);
 
+
+
+
+
+
   });
   return router;
 };

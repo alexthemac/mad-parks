@@ -23,6 +23,7 @@ CREATE TABLE parks (
   street_address VARCHAR(255) NOT NULL,
   city VARCHAR(255) NOT NULL,
   province VARCHAR(255) NOT NULL,
+  park_image VARCHAR(255) NOT NULL,
   coordinates_long DECIMAL(9, 6),
   coordinates_lat DECIMAL(8, 6),
   description TEXT,
