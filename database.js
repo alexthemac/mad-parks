@@ -94,7 +94,7 @@ const getParksWithMapId = function (id, db) {
     db
       .query(queryString, [id])
       .then((result) => {
-        // console.log(result.rows[0])
+        console.log(result.rows[0])
 
         //If result is not found inside DB, return null
         if (result.rows.length === 0) {
@@ -110,13 +110,12 @@ const getParksWithMapId = function (id, db) {
   );
 };
 
-const getParksForMarkerWithMapId = function (id, db) {
+const getParkWithParksId = function (id, db) {
   //Define query
   const queryString = `
-  SELECT coordinates_long, coordinates_lat
+  SELECT parks.id as parks_id, park_name, coordinates_long, coordinates_lat street_address, city, province, coordinates_long, coordinates_lat, description, basketball_nets, tennis_courts, soccer_nets, skatepark, workout_equipment, bathrooms, water_fountain, dog_park
   FROM parks
-  JOIN maps ON maps.id = map_id
-  WHERE maps.id = $1;
+  WHERE parks.id = $1;
   `;
   return (
     db
@@ -224,23 +223,23 @@ const addUserToUsers = function (name, email, password, db) {
 const addParkToParks = function (park, db) {
   //Define values
   const values = [
-  park.park_name,
-  park.street_address,
-  park.city,
-  park.province,
-  park.description,
-  park.coordinates_long,
-  park.coordinates_lat,
-  park.basketball_nets,
-  park.tennis_courts,
-  park.soccer_nets,
-  park.skatepark,
-  park.workout_equipment,
-  park.bathrooms,
-  park.water_fountain,
-  park.dog_park,
-  park.creator_id,
-  park.map_id
+    park.park_name,
+    park.street_address,
+    park.city,
+    park.province,
+    park.description,
+    park.coordinates_long,
+    park.coordinates_lat,
+    park.basketball_nets,
+    park.tennis_courts,
+    park.soccer_nets,
+    park.skatepark,
+    park.workout_equipment,
+    park.bathrooms,
+    park.water_fountain,
+    park.dog_park,
+    park.creator_id,
+    park.map_id
   ]
 
   //Define query
@@ -293,7 +292,7 @@ module.exports = {
   getParksWithCreatorId,
   getParksWithMapId,
   getMapsWithCreatorId,
-  getParksForMarkerWithMapId,
+  getParkWithParksId,
   getUserWithEmailOrName,
   addUserToUsers,
   addParkToParks
