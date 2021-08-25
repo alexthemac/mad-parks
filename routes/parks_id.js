@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const {getParkWithParksId} = require('../database.js');
 
 module.exports = (db) => {
 
@@ -13,16 +14,16 @@ module.exports = (db) => {
       parkId
     };
 
-    getParksWithMapId(mapId, db)
+    getParkWithParksId(parkId, db)
       .then((result) => {
 
-        console.log(result);
+        console.log(result[0]);
 
         //Store array from query in templateVars
         const templateVars = {
           userId,
-          mapId,
-          parksArray: result
+          parkId,
+          park: result[0]
         };
         res.render('parks_id', templateVars);
       });

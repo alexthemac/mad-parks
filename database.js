@@ -38,13 +38,11 @@ const getUserWithId = function (id, db) {
     db
       .query(queryString, [id])
       .then((result) => {
-
         //If result is not found inside DB, return null
         if (result.rows.length === 0) {
           return null;
         }
         //If result is found, return the object for the user
-        console.log("from inside func@ db.js", result.rows[0])
         return result.rows[0];
       })
       //Console log error if can't connect to DB
@@ -150,7 +148,6 @@ const getMapsWithCreatorId = function (id, db) {
     db
       .query(queryString, [id])
       .then((result) => {
-
         //If result is not found inside DB, return null
         if (result.rows.length === 0) {
           return null;
@@ -219,29 +216,30 @@ const addUserToUsers = function (name, email, password, db) {
         console.log(err.message);
       })
   );
-}
+};
 
 const addParkToParks = function (park, db) {
   //Define values
   const values = [
-  park.park_name,
-  park.street_address,
-  park.city,
-  park.province,
-  park.description,
-  park.coordinates_long,
-  park.coordinates_lat,
-  park.basketball_nets,
-  park.tennis_courts,
-  park.soccer_nets,
-  park.skatepark,
-  park.workout_equipment,
-  park.bathrooms,
-  park.water_fountain,
-  park.dog_park,
-  park.creator_id,
-  park.map_id
-  ]
+    park.park_name,
+    park.street_address,
+    park.city,
+    park.province,
+    park.park_image,
+    park.description,
+    park.coordinates_long,
+    park.coordinates_lat,
+    park.basketball_nets,
+    park.tennis_courts,
+    park.soccer_nets,
+    park.skatepark,
+    park.workout_equipment,
+    park.bathrooms,
+    park.water_fountain,
+    park.dog_park,
+    park.creator_id,
+    park.map_id,
+  ];
 
   //Define query
   const queryString = `
@@ -250,6 +248,7 @@ const addParkToParks = function (park, db) {
   street_address,
   city,
   province,
+  park_image,
   description,
   coordinates_long,
   coordinates_lat,
@@ -264,7 +263,7 @@ const addParkToParks = function (park, db) {
   creator_id,
   map_id
   )
-  VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17)
+  VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18)
   RETURNING *;
   `;
 
@@ -285,7 +284,91 @@ const addParkToParks = function (park, db) {
         console.log(err.message);
       })
   );
-}
+};
+
+const getAllMaps = function (db) {
+  //Define query
+  const queryString = `
+  SELECT maps.id as map_id, maps.name as map_name, creator_id
+  FROM maps;
+  `;
+  return (
+    db
+      .query(queryString)
+      .then((result) => {
+        //If result is not found inside DB, return null
+        if (result.rows.length === 0) {
+          return null;
+        }
+        //If result is found, return the object for the user
+        return result.rows;
+      })
+      //Console log error if can't connect to DB
+      .catch((err) => {
+        console.log(err.message);
+      })
+  );
+};
+
+const getAllParks = function (db) {
+  //Define query
+  const queryString = `
+  SELECT *
+  FROM parks
+  WHERE map_id IS null;
+  `;
+  return (
+    db
+      .query(queryString)
+      .then((result) => {
+        // console.log(result.rows[0])
+
+        //If result is not found inside DB, return null
+        if (result.rows.length === 0) {
+          return null;
+        }
+        //If result is found, return the object for the user
+        return result.rows;
+      })
+      //Console log error if can't connect to DB
+      .catch((err) => {
+        console.log(err.message);
+      })
+  );
+};
+
+const addParkToMaps = function (name, email, password, db) {
+  //Define query
+  const queryString = `
+  INSERT INTO parks
+  (name, email, password)
+  VALUES
+  ($1, $2, $3)
+  RETURNING *;
+  `;
+
+  //Return promise for query
+  return (
+    db
+      .query(queryString, [name, email, password])
+      .then((result) => {
+        //If result is not found inside DB, return null
+        if (result.rows.length === 0) {
+          return null;
+        }
+        //If result is found, return the array for the user
+        return result.rows;
+      })
+      //Console log error if can't connect to DB
+      .catch((err) => {
+        console.log(err.message);
+      })
+  );
+};
+
+
+
+
 
 module.exports = {
   getUserWithEmail,
@@ -296,5 +379,8 @@ module.exports = {
   getParksForMarkerWithMapId,
   getUserWithEmailOrName,
   addUserToUsers,
-  addParkToParks
+  addParkToParks,
+  getAllMaps,
+  getAllParks,
+  addParkToMaps
 };

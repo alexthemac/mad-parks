@@ -10,12 +10,39 @@
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
+
+    <!-- Leaflet stuff for maps below -->
+    <%- include('partials/_leafletApiLinks') %>
+    <!-- Leaflet stuff for maps above -->
   </head>
 
   <body>
-
     <%- include('partials/_header') %>
+    <section class="body-container">
 
-    <h1>New Maps Page</h1>
+      <form action="/maps/new" method="POST">
+        <section class="section-title">
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingInput" placeholder="Map Name" name="map_name">
+            <label for="floatingInput">Map Name</label>
+          </div>
+          <button type="submit" class="btn btn-outline-dark">Create New Map</button>
+        </section>
+
+
+        <% for (const el of parksArray) { %>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox"
+            value="" name="<%= el['id'] %>">
+            <label class="form-check-label" for="flexCheckDefault">
+              <%= el['park_name'] %>
+
+            </label>
+          </div>
+        <% } %>
+      </form>
+    </section>
   </body>
+
+  <!-- Leaflet stuff for maps above -->
 </html>

@@ -1,24 +1,22 @@
-const express = require('express');
-const router  = express.Router();
-const { getUserWithId } = require('../database.js');
+const express = require("express");
+const router = express.Router();
+const { getAllMaps } = require("../database.js");
 
 module.exports = (db) => {
-
   router.get("/", (req, res) => {
     const userId = req.cookies.user_id;
-    const user = getUserWithId(userId, db)
-    .then((result) => {
 
-      console.log(`\n USERNAME: ${JSON.stringify(result)}`);
+    getAllMaps(db)
+    .then ((result) => {
+      console.log(`\n INSIDE MAPS>JS ${JSON.stringify(result)}`);
+
+      const templateVars = {
+        userId,
+        mapsArray: result
+      };
+
+      res.render("maps", templateVars);
     })
-
-    const templateVars = {
-      userId,
-    };
-
-    res.render('maps', templateVars);
   });
   return router;
 };
-
-

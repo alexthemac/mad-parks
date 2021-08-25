@@ -37,7 +37,7 @@ app.use(express.static("public"));
 const usersRoutes = require("./routes/users");
 const widgetsRoutes = require("./routes/widgets");
 const mapsRoutes = require("./routes/maps");
-const mapsNewRoutes = require("./routes/maps_new");
+// const mapsNewRoutes = require("./routes/maps_new");
 const mapsId = require("./routes/maps_id");
 const userProfile = require("./routes/profile");
 const parks = require("./routes/parks");
@@ -50,13 +50,16 @@ const {loginGet, loginPost} = require("./routes/login");
 const {registerGet, registerPost} = require("./routes/register");
 const {parksNewGet, parksNewPost} = require("./routes/parks_new");
 const logoutPost = require("./routes/logout");
+const { mapsNewGet, mapsNewPost } = require("./routes/maps_new");
 
 
 // Mount all resource routes
 app.use("/api/users", usersRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
 app.use("/maps", mapsRoutes(db));
-app.use("/maps/new", mapsNewRoutes(db));
+// app.use("/maps/new", mapsNewRoutes(db));
+app.use("/maps/new", mapsNewGet(db));
+app.use("/maps/new", mapsNewPost(db));
 app.use("/maps", mapsId(db));
 app.use("/profile", userProfile(db));
 app.use("/parks", parks(db));

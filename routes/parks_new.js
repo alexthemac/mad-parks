@@ -6,7 +6,6 @@ const { addParkToParks } = require('../database.js');
 
 const parksNewGet = function (db) {
   router.get("/", (req, res) => {
-    //Get userId from cookie
     const userId = req.cookies.user_id;
 
     //Redirect to login if user not logged in. Only logged in users can create parks
@@ -30,6 +29,7 @@ const parksNewPost = function (db) {
     const street_address = req.body['street_address'];
     const city = req.body['city'];
     const province = req.body['province'];
+    const park_image = req.body['park_image'];
     const description = req.body['description'];
     const coordinates_long = req.body['coordinates_long'];
     const coordinates_lat = req.body['coordinates_lat'];
@@ -61,7 +61,7 @@ const parksNewPost = function (db) {
     }
 
     //Display error if email is blank or password is blank
-    if (!park_name || !street_address || !city || !province || !description || !coordinates_long || !coordinates_lat) {
+    if (!park_name || !street_address || !city || !province || !park_image || !description || !coordinates_long || !coordinates_lat) {
       return res.status(400).send(`One of the fields is blank. Please <a href='/parks/new'>try again</a>`);
     };
 

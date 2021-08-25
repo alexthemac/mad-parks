@@ -1,7 +1,5 @@
 const express = require("express");
 const router = express.Router();
-
-// const { getUserByEmail, getUserPassword } = require("../helpers");
 const { getUserWithEmail } = require('../database.js');
 
 const loginGet = function (db) {
@@ -23,18 +21,6 @@ const loginGet = function (db) {
 };
 
 
-const users = {
-  userA: {
-    id: "1",
-    email: "a@a.com",
-    password: "a",
-  },
-  userB: {
-    id: "2",
-    email: "b@b.com",
-    password: "b",
-  },
-};
 
 //!!!Need to update with users from DB as opposed to users object!!!///
 const loginPost = function (db) {
@@ -66,9 +52,7 @@ const loginPost = function (db) {
       res.cookie("user_id", result.id);
 
       res.redirect("/profile");
-
     });
-
   });
 
   return router;

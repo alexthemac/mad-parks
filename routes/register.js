@@ -12,20 +12,7 @@ const registerGet = function (db) {
       userId,
     };
 
-    ///////
-    // insert db statment
-    //////
 
-    // db.query(`SELECT * FROM users;`)
-    //   .then(data => {
-    //     const users = data.rows;
-    //     res.json({ users });
-    //   })
-    //   .catch(err => {
-    //     res
-    //       .status(500)
-    //       .json({ error: err.message });
-    //   });
     res.render('register', templateVars);
   });
   return router;
