@@ -224,10 +224,7 @@ const addParkToParks = function (park, db) {
     park.street_address,
     park.city,
     park.province,
-<<<<<<< HEAD
     park.park_image,
-=======
->>>>>>> 6d44ba3062f05927c51010194abc1d34c541808c
     park.description,
     park.coordinates_long,
     park.coordinates_lat,
@@ -240,13 +237,8 @@ const addParkToParks = function (park, db) {
     park.water_fountain,
     park.dog_park,
     park.creator_id,
-<<<<<<< HEAD
     park.map_id,
   ];
-=======
-    park.map_id
-  ]
->>>>>>> 6d44ba3062f05927c51010194abc1d34c541808c
 
   //Define query
   const queryString = `
