@@ -1,6 +1,6 @@
 const express = require('express');
 const router  = express.Router();
-const {getParksWithMapId} = require('../database.js');
+const { getParksWithMapId } = require('../database.js');
 
 module.exports = (db) => {
   router.get("/:id", (req, res) => {
@@ -29,3 +29,5 @@ module.exports = (db) => {
 
   return router;
 };
+
+

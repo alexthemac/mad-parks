@@ -3,7 +3,7 @@ const router  = express.Router();
 const { insertFavMap } = require('../database.js');
 
 const map_fav = function (db) {
-  router.post("/", (req, res) => {
+  router.post("/:id", (req, res) => {
 
     //Get userId from cookie
     const userId = req.cookies.user_id;
@@ -13,7 +13,8 @@ const map_fav = function (db) {
 
     insertFavMap(userId, mapId, db).then((result) => {
       console.log('Another one!', result);
-      res.redirect(`/maps/${mapId}`);
+      console.log('mapid', mapId);
+      // res.redirect(`/maps/${mapId}`);
     });
   });
   return router;

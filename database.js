@@ -336,11 +336,11 @@ const getAllParks = function (db) {
   );
 };
 
-const addParkToMaps = function (name, email, password, db) {
+const addMapToMaps = function (mapName, mapDescription, creator_id, db) {
   //Define query
   const queryString = `
-  INSERT INTO parks
-  (name, email, password)
+  INSERT INTO maps
+  (name, description, creator_id)
   VALUES
   ($1, $2, $3)
   RETURNING *;
@@ -349,7 +349,7 @@ const addParkToMaps = function (name, email, password, db) {
   //Return promise for query
   return (
     db
-      .query(queryString, [name, email, password])
+      .query(queryString, [mapName, mapDescription, creator_id])
       .then((result) => {
         //If result is not found inside DB, return null
         if (result.rows.length === 0) {
@@ -394,9 +394,32 @@ const insertFavMap = function (userId, mapId, db) {
       })
   );
 };
+const getCurrentParkInfo = function (bodyParkId, db) {
+  //Define query
+  const queryString = `
+  SELECT *
+  FROM parks
+  WHERE id = $1;
+  `;
+  return (
+    db
+      .query(queryString, [bodyParkId])
+      .then((result) => {
+        // console.log(result.rows[0])
 
-
-
+        //If result is not found inside DB, return null
+        if (result.rows.length === 0) {
+          return null;
+        }
+        //If result is found, return the object for the user
+        return result.rows[0];
+      })
+      //Console log error if can't connect to DB
+      .catch((err) => {
+        console.log(err.message);
+      })
+  );
+}
 
 module.exports = {
   getUserWithEmail,
@@ -410,6 +433,7 @@ module.exports = {
   addParkToParks,
   getAllMaps,
   getAllParks,
-  addParkToMaps,
-  insertFavMap
+  insertFavMap,
+  addMapToMaps,
+  getCurrentParkInfo
 };

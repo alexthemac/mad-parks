@@ -21,7 +21,7 @@
   <%- include('partials/_header') %>
     <section class="body-container">
       <span class="section-title">  </span>
-      <form action="/map_fav" method="POST">
+      <form action="/map_fav/<%=mapId%>" method="POST">
         <button type="submit" class="btn btn-light">Favorite ⭐</button>
       </form>
       <div id="mapid"></div>
