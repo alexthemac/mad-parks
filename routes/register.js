@@ -1,7 +1,5 @@
 const express = require('express');
 const router  = express.Router();
-
-const { getUserByEmail} = require('../helpers');
 const { getUserWithEmailOrName, addUserToUsers } = require('../database.js');
 
 const registerGet = function (db) {
