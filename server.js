@@ -44,6 +44,8 @@ const parks = require("./routes/parks");
 // const parksNewRoutes = require("./routes/parks_new");
 const parksId = require("./routes/parks_id");
 
+const { mapsEditGet, mapsEditPost } = require("./routes/maps_edit");
+
 
 const {loginGet, loginPost} = require("./routes/login");
 const {registerGet, registerPost} = require("./routes/register");
@@ -71,6 +73,8 @@ app.use("/logout", logoutPost(db));
 app.use("/register", registerGet(db));
 app.use("/register", registerPost(db));
 app.use("/map_fav", map_fav(db));
+
+app.use("/maps/edit", mapsEditGet(db));
 
 
 

@@ -421,6 +421,34 @@ const getCurrentParkInfo = function (bodyParkId, db) {
   );
 }
 
+const getMapsWithMapId = function (mapId, db) {
+  //Define query
+  const queryString = `
+  SELECT id, map_id, park_name
+  FROM parks
+  WHERE map_id is NULL OR map_id = $1;
+  ;
+  `;
+  return (
+    db
+      .query(queryString, [mapId])
+      .then((result) => {
+        //If result is not found inside DB, return null
+        if (result.rows.length === 0) {
+          return null;
+        }
+        //If result is found, return the object for the user
+        return result.rows;
+      })
+      //Console log error if can't connect to DB
+      .catch((err) => {
+        console.log(err.message);
+      })
+  );
+};
+
+
+
 module.exports = {
   getUserWithEmail,
   getUserWithId,
@@ -435,5 +463,6 @@ module.exports = {
   getAllParks,
   insertFavMap,
   addMapToMaps,
-  getCurrentParkInfo
+  getCurrentParkInfo,
+  getMapsWithMapId
 };
