@@ -92,8 +92,6 @@ const getParksWithMapId = function (id, db) {
     db
       .query(queryString, [id])
       .then((result) => {
-        console.log(result.rows[0])
-
         //If result is not found inside DB, return null
         if (result.rows.length === 0) {
           return null;
@@ -394,12 +392,13 @@ const insertFavMap = function (userId, mapId, db) {
       })
   );
 };
+
 const getCurrentParkInfo = function (bodyParkId, db) {
   //Define query
   const queryString = `
   SELECT *
   FROM parks
-  WHERE id = $1;
+  WHERE id = $1 AND map_id is NULL;
   `;
   return (
     db
@@ -504,6 +503,63 @@ const getMapsWithMapId = function (mapId, db) {
   );
 };
 
+const dropParkWithMapIdandParkId = function (mapId, parkId, db) {
+  //Define query
+  const queryString = `
+  DELETE FROM parks
+  WHERE map_id = $1
+  AND id = $2
+  RETURNING *;
+  `;
+
+  //Return promise for query
+  return (
+    db
+      .query(queryString, [mapId, parkId])
+      .then((result) => {
+        //If result is not found inside DB, return null
+        if (result.rows.length === 0) {
+          return null;
+        }
+        //If result is found, return the array for the user
+        return result.rows;
+      })
+      //Console log error if can't connect to DB
+      .catch((err) => {
+        console.log(err.message);
+      })
+  );
+};
+
+const getCheckedParksWithMapId = function (mapId, parkId, db) {
+  //Define query
+  const queryString = `
+  SELECT id, park_name, map_id
+  FROM parks
+  WHERE map_id = $1 AND id != $2;
+  `;
+  return (
+    db
+      .query(queryString, [mapId, parkId])
+      .then((result) => {
+
+        //If result is not found inside DB, return null
+        if (result.rows.length === 0) {
+          return null;
+        }
+        //If result is found, return the object for the user
+        return result.rows;
+      })
+      //Console log error if can't connect to DB
+      .catch((err) => {
+        console.log(err.message);
+      })
+  );
+};
+
+
+
+
 module.exports = {
   getUserWithEmail,
   getUserWithId,
@@ -521,5 +577,7 @@ module.exports = {
   getCurrentParkInfo,
   getParksForFilterWithMapId,
   getFavorites,
-  getMapsWithMapId
+  getMapsWithMapId,
+  dropParkWithMapIdandParkId,
+  getCheckedParksWithMapId
 };

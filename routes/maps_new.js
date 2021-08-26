@@ -51,7 +51,7 @@ const mapsNewPost = function (db) {
           })
         }
       }
-      res.redirect(`/maps/${mapID}`);
+      setTimeout(() => res.redirect(`/maps/${mapID}`), 100);
     })
   });
   return router;
