@@ -4,6 +4,17 @@
       Mad Parks
     </div>
     <div id="header-container-right">
+      <div class="header-container-button">
+        <form  action="/maps" method="GET">
+          <button type="submit" class="btn btn-outline-dark">Home</button>
+        </form>
+      </div>
+      <div class="header-container-button">
+        <form  action="/profile" method="GET">
+          <button type="submit" class="btn btn-outline-dark">Profile
+          </button>
+        </form>
+      </div>
       <% if (!userId){ %>
         <div class="header-container-button">
           <form  action="/register" method="GET">

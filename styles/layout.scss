@@ -9,7 +9,6 @@ $secondary-text-color: rgb(0, 0, 0);
 $tertiary-text-color: rgb(255, 255, 255);
 
 $primary-border-color: rgb(97, 104, 98);
-$mouse-over-highlight-color: rgb(238, 35, 12);//delete?
 
 #header-container {
   display: flex;
@@ -38,7 +37,6 @@ $mouse-over-highlight-color: rgb(238, 35, 12);//delete?
   max-height: 2em;
   margin: 1em;
   padding: 1em;
-  border-left: 2px solid $primary-border-color;
 
   font-size: 1rem;
   color: $primary-text-color;
