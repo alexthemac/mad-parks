@@ -24,19 +24,26 @@
         <%= mapName %>
         <%= mapDesc %>
         <form action="/maps/edit" method="POST">
-          <button type="submit" class="btn btn-outline-dark">Edit Map</button>
+          <button type="submit" class="btn btn-outline-dark">Submit Changes</button>
         </form>
       </section>
 
 
-        <% for (const el of parksArray) { %>
+        <% for (const el of parksFilteredArray) { %>
           <div class="form-check">
-            <input class="form-check-input" type="checkbox"
-            value="" name="<%= el['id'] %>">
-            <label class="form-check-label" for="flexCheckDefault">
-              <%= el['park_name'] %>
+            <% if (el['map_id'] !== null) { %>
 
-            </label>
+              <input class="form-check-input" type="checkbox"
+              value="" name="<%= el['id'] %>" id="flexCheckChecked" checked >
+              <label class="form-check-label" for="flexCheckDefault"><%= el['park_name'] %></label>
+            <% } else { %>
+
+              <input class="form-check-input" type="checkbox"
+              value="" name="<%= el['id'] %>" id="flexCheckChecked" >
+              <label class="form-check-label" for="flexCheckDefault"><%= el['park_name'] %></label>
+            <% } %>
+
+
           </div>
         <% } %>
       </form>
