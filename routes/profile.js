@@ -11,7 +11,7 @@ module.exports = (db) => {
     const userId = req.cookies.user_id;
 
     if (!userId) {
-      return res.redirect("maps");
+      return res.redirect("login");
     }
 
     Promise.all([

@@ -14,7 +14,7 @@ const map_fav = function (db) {
     insertFavMap(userId, mapId, db).then((result) => {
       console.log('Another one!', result);
       console.log('mapid', mapId);
-      // res.redirect(`/maps/${mapId}`);
+      res.redirect(`/maps/${mapId}`);
     });
   });
   return router;
