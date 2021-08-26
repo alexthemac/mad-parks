@@ -21,7 +21,7 @@ module.exports = (db) => {
           };
           res.render("maps", templateVars);
         }
-        const userName = 'Not logged in';
+        const userName = '';
         const templateVars = {
           userId,
           mapsArray: result,

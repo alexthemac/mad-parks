@@ -560,6 +560,7 @@ const getCheckedParksWithMapId = function (mapId, parkId, db) {
 
 
 
+
 module.exports = {
   getUserWithEmail,
   getUserWithId,
