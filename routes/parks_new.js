@@ -71,6 +71,7 @@ const parksNewPost = function (db) {
     .then((result) => {
       console.log(result)
     })
+    // res.redirect("profile")
   });
   return router;
 }

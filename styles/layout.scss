@@ -91,7 +91,8 @@ $primary-border-color: rgb(97, 104, 98);
 .profile-column {
   display: flex;
   flex-direction: column;
-  max-width: 13em;
+  align-items: center;
+  width: 30%;
 }
 #mapid {
   height: 400px;
@@ -109,4 +110,8 @@ $primary-border-color: rgb(97, 104, 98);
   font-size: 1em;
   color: $tertiary-text-color;
   background-color: $secondary-icon-color
+}
+
+.xxx{
+  width: 100%;
 }

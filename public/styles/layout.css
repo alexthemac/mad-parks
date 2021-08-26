@@ -69,7 +69,8 @@
 .profile-column {
   display: flex;
   flex-direction: column;
-  max-width: 13em;
+  align-items: center;
+  width: 30%;
 }
 
 #mapid {
@@ -87,4 +88,8 @@
   font-size: 1em;
   color: white;
   background-color: #34a0a4;
+}
+
+.xxx {
+  width: 100%;
 }
