@@ -69,7 +69,7 @@ const parksNewPost = function (db) {
     // //CHECK TO SEE IF PARK WAS ALREADY ADDED OR NOT....BY NAME? BY COORDINATES?
     addParkToParks(parkDataObj, db)
     .then((result) => {
-      console.log(result)
+      res.redirect("/profile");
     })
   });
   return router;
