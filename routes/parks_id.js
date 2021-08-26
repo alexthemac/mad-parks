@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {getParkWithParksId} = require('../database.js');
+const {getParkWithParksId, getUserWithId} = require('../database.js');
 
 module.exports = (db) => {
 
@@ -9,23 +9,25 @@ module.exports = (db) => {
     const userId = req.cookies.user_id;
     const parkId = req.params.id;
 
-    const templateVars = {
-      userId,
-      parkId
-    };
-
     getParkWithParksId(parkId, db)
       .then((result) => {
 
-        console.log(result[0]);
+        // console.log(result[0]);
 
-        //Store array from query in templateVars
-        const templateVars = {
-          userId,
-          parkId,
-          park: result[0]
-        };
-        res.render('parks_id', templateVars);
+        getUserWithId(userId, db)
+        .then((resultName)=>{
+
+          const userName = resultName["name"];
+
+          //Store array from query in templateVars
+          const templateVars = {
+            userId,
+            parkId,
+            park: result[0],
+            userName
+          };
+          res.render('parks_id', templateVars);
+          })
       });
     });
     return router;
