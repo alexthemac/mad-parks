@@ -20,11 +20,18 @@
 <body>
   <%- include('partials/_header') %>
     <section class="body-container">
-      <span class="section-title">  </span>
+      <span class="section-title"><%= parksArray[0].map_name%></span>
       <form action="/map_fav/<%=mapId%>" method="POST">
         <button type="submit" class="btn btn-light">Favorite ⭐</button>
       </form>
+      <form action="/maps/edit/<%=mapId%>" method="GET">
+        <button type="submit" class="btn btn-light">Edit Map</button>
+      </form>
       <div id="mapid"></div>
+      <article>
+        <h3>Description:</h3>
+        <%= parksArray[0].description%>
+      </article>
     </section>
 </body>
 <!-- Leaflet stuff for maps below -->
