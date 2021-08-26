@@ -9,10 +9,6 @@ module.exports = (db) => {
     const userId = req.cookies.user_id;
     const parkId = req.params.id;
 
-    const templateVars = {
-      userId,
-      parkId
-    };
 
     getParkWithParksId(parkId, db)
       .then((result) => {
