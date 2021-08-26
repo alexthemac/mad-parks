@@ -10,20 +10,6 @@ module.exports = (db) => {
       userId,
     };
 
-    /////////
-    //query for all parks
-    ///////
-
-    // db.query(`SELECT * FROM users;`)
-    //   .then(data => {
-    //     const users = data.rows;
-    //     res.json({ users });
-    //   })
-    //   .catch(err => {
-    //     res
-    //       .status(500)
-    //       .json({ error: err.message });
-    //   });
     res.render('parks', templateVars);
   });
   return router;

@@ -25,8 +25,8 @@ CREATE TABLE parks (
   city VARCHAR(255) NOT NULL,
   province VARCHAR(255) NOT NULL,
   park_image VARCHAR(255) NOT NULL,
-  coordinates_long DECIMAL(9, 6),
-  coordinates_lat DECIMAL(8, 6),
+  coordinates_long DOUBLE PRECISION,
+  coordinates_lat DOUBLE PRECISION,
   description TEXT,
   basketball_nets BOOLEAN,
   tennis_courts BOOLEAN,
@@ -45,3 +45,5 @@ CREATE TABLE favorites (
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   map_id INTEGER REFERENCES maps(id) ON DELETE CASCADE
 )
+
+

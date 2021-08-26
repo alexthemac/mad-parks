@@ -73,6 +73,7 @@ app.use("/register", registerGet(db));
 app.use("/register", registerPost(db));
 app.use("/map_fav", map_fav(db));
 app.use("/maps/edit", mapsEditGet(db));
+app.use("/maps/edit", mapsEditPost(db));
 
 
 
