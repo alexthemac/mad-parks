@@ -56,6 +56,23 @@
           <% } %> <% } %>
         </ul>
       </section>
+      <section class="profile-column">
+        <div class="section-title">
+        Favorites
+        </div>
+        <ul>
+          <% if (favsArray) { %> <% for (let i = 0; i < favsArray.length; i++) {
+          %>
+
+          <form action="/maps/<%= favsArray[i]. id %>" method="GET">
+            <button type="submit" class="btn btn-outline-dark">
+              <%= favsArray[i].name %>
+            </button>
+          </form>
+
+          <% } %> <% } %>
+        </ul>
+      </section>
     </section>
   </body>
 </html>

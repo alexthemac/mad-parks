@@ -12,7 +12,7 @@ module.exports = (db) => {
     getParksWithMapId(mapId, db)
     .then((result) => {
 
-      console.log(result);
+      console.log("result from maps_id.js: ", result);
 
       //Store array from query in templateVars
       const templateVars = {

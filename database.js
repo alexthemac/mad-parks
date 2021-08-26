@@ -421,7 +421,7 @@ const getCurrentParkInfo = function (bodyParkId, db) {
   );
 }
 
-const getMapsWithMapId = function (mapId, db) {
+const getParksForFilterWithMapId = function (mapId, db) {
   //Define query
   const queryString = `
   SELECT id, map_id, park_name
@@ -447,7 +447,62 @@ const getMapsWithMapId = function (mapId, db) {
   );
 };
 
+const getFavorites = function (userId, db) {
+  //Define query
+  const queryString = `
+  SELECT maps.name, maps.id
+  FROM favorites
+  JOIN maps ON map_id = maps.id
+  WHERE favorites.user_id = $1;
+  `;
+  return (
+    db
+      .query(queryString, [userId])
+      .then((result) => {
+        console.log("\nreturn from q: ", result.rows)
 
+        //If result is not found inside DB, return null
+        if (result.rows.length === 0) {
+          return null;
+        }
+        //If result is found, return the object for the user
+        return result.rows;
+      })
+      //Console log error if can't connect to DB
+      .catch((err) => {
+        console.log(err.message);
+      })
+  );
+}
+
+
+
+const getMapsWithMapId = function (mapId, db) {
+  //Define query
+  const queryString = `
+  SELECT *
+  FROM maps
+  WHERE id = $1;
+  `;
+  return (
+    db
+      .query(queryString, [mapId])
+      .then((result) => {
+        // console.log(result.rows[0])
+
+        //If result is not found inside DB, return null
+        if (result.rows.length === 0) {
+          return null;
+        }
+        //If result is found, return the object for the user
+        return result.rows;
+      })
+      //Console log error if can't connect to DB
+      .catch((err) => {
+        console.log(err.message);
+      })
+  );
+};
 
 module.exports = {
   getUserWithEmail,
@@ -464,5 +519,7 @@ module.exports = {
   insertFavMap,
   addMapToMaps,
   getCurrentParkInfo,
+  getParksForFilterWithMapId,
+  getFavorites,
   getMapsWithMapId
 };
