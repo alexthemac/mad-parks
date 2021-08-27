@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { getAllParks, addMapToMaps, getCurrentParkInfo, addParkToParks} = require("../database.js");
+const { getAllParks, addMapToMaps, getCurrentParkInfo, addParkToParks, getUserWithId} = require("../database.js");
 
 
 const mapsNewGet = function (db) {
@@ -8,14 +8,18 @@ const mapsNewGet = function (db) {
     const userId = req.cookies.user_id;
 
     getAllParks(db).then((result) => {
-      // console.log(`\n INSIDE MAPS>JS ${JSON.stringify(result)}`);
 
-      const templateVars = {
-        userId,
-        parksArray: result,
-      };
+      getUserWithId(userId, db)
+      .then((resultName)=>{
 
-      res.render("maps_new", templateVars);
+        const userName = resultName["name"];
+        const templateVars = {
+          userId,
+          parksArray: result,
+          userName
+        };
+        res.render("maps_new", templateVars);
+      })
     });
   });
   return router;
