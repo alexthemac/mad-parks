@@ -50,11 +50,17 @@
 <script script type="text/javascript" src="/scripts/map_idScripts.js"></script>
 <script>
     const parks = <%- JSON.stringify(parksArray) %>;
+    let markers = [];
     parks.forEach(park => {
       lat = park.coordinates_lat;
       lon = park.coordinates_long;
-      L.marker([lat,lon]).addTo(mymap);
+      markers.push({ coords: [lat,lon], uri: `/parks/${park.park_id}`})
     });
+    markers.forEach(point => {
+      L.marker(point.coords).on('click', function() {
+        window.location = point.uri;
+      }).addTo(mymap);
+    })
 </script>
 <!-- Leaflet stuff for maps above -->
 
