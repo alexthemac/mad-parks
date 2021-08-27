@@ -83,7 +83,7 @@ const getParksWithCreatorId = function (id, db) {
 const getParksWithMapId = function (id, db) {
   //Define query
   const queryString = `
-  SELECT parks.id as park_id, park_name, maps.id as map_id, maps.name as map_name, coordinates_long, coordinates_lat, maps.description as description
+  SELECT parks.id as park_id, park_name, maps.id as map_id, maps.name as map_name, coordinates_long, coordinates_lat, maps.description as description, maps.creator_id as map_creator
   FROM parks
   JOIN maps ON maps.id = map_id
   WHERE maps.id = $1;

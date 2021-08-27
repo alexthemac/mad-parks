@@ -28,6 +28,11 @@
   color: #151f68;
 }
 
+#loggedIn {
+  color: white;
+  font-weight: bold;
+}
+
 .body-container {
   padding: 1em;
   background-color: #eeeeee;

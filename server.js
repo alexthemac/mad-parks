@@ -36,8 +36,7 @@ app.use(
 app.use(express.static("public"));
 
 // Separated Routes for each Resource
-// const usersRoutes = require("./routes/users");
-// const widgetsRoutes = require("./routes/widgets");
+
 const mapsRoutes = require("./routes/maps");
 // const mapsNewRoutes = require("./routes/maps_new");
 const mapsId = require("./routes/maps_id");
@@ -79,9 +78,12 @@ app.use("/maps/edit", mapsEditPost(db));
 app.get("/", (req, res) => {
   const userId = req.cookies.user_id;
   const templateVars = {
-    userId,
-  };
-  res.render("index", templateVars);
+    userId
+  }
+  // res.render("index", templateVars);
+
+  res.redirect("maps");
+
 });
 
 app.listen(PORT, () => {
