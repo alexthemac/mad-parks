@@ -6,30 +6,30 @@
     <div id="header-container-right">
       <div class="header-container-button">
         <form  action="/maps" method="GET">
-          <button type="submit" class="btn btn-outline-dark">Home</button>
+          <button type="submit" class="btn btn-outline-light">Home</button>
         </form>
       </div>
       <div class="header-container-button">
         <form  action="/profile" method="GET">
-          <button type="submit" class="btn btn-outline-dark">Profile
+          <button type="submit" class="btn btn-outline-light">Profile
           </button>
         </form>
       </div>
       <% if (!userId){ %>
         <div class="header-container-button">
           <form  action="/register" method="GET">
-            <button type="submit" class="btn btn-outline-dark">Register</button>
+            <button type="submit" class="btn btn-outline-light">Register</button>
           </form>
         </div>
         <div class="header-container-button">
           <form action="/login" method="GET">
-            <button type="submit" class="btn btn-outline-dark">Log In</button>
+            <button type="submit" class="btn btn-outline-light">Log In</button>
           </form>
         </div>
         <% } else { %>
         <div class="header-container-button">
           <form action="/logout" method="POST">
-            <button type="submit" class="btn btn-outline-dark">Log Out</button>
+            <button type="submit" class="btn btn-outline-light">Log Out</button>
           </form>
         </div>
 
