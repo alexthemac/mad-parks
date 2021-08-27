@@ -1,115 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <title>Park</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
 
-<head>
-  <title>Park</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
 
-  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-
-  <!-- Leaflet stuff for maps below -->
-  <%- include('partials/_leafletApiLinks') %>
+    <!-- Leaflet stuff for maps below -->
+    <%- include('partials/_leafletApiLinks') %>
     <!-- Leaflet stuff for maps above -->
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
-</head>
+  </head>
 
-<body>
-  <%- include('partials/_header') %>
+  <body>
+    <%- include('partials/_header') %>
     <section class="body-container">
-      <span class="section-title"> Take a look at park: <%= park.park_name %> </span>
+      <span class="section-title">
+        Take a look at park: <%= park.park_name %>
+      </span>
       <div id="mapid"></div>
       <article>
         <h3>Details</h3>
         <ul>
-          <li>Street Address: <%= park.street_address %>
-          </li>
-          <li>City: <%= park.city %>
-          </li>
-          <li>State: <%= park.province %>
-          </li>
-          <li>Description: <%= park.description %>
-          </li>
+          <li>Street Address: <%= park.street_address %></li>
+          <li>City: <%= park.city %></li>
+          <li>State: <%= park.province %></li>
+          <li>Description: <%= park.description %></li>
         </ul>
         <article>
           <h3>Gallery</h3>
-          <img src="<%= park.park_image %>" alt="IIIIIIIMAAAAAAAGEEEEE">
+          <img src="<%= park.park_image %>" alt="IIIIIIIMAAAAAAAGEEEEE" />
         </article>
         <article>
           <h3>Amenities</h3>
           <ul>
-            <li>Dog Park:
-              <% if (park.dog_park) { %>
-                Yes
-              <% } else { %>
-                No
+            <li>
+              Dog Park: <% if (park.dog_park) { %> Yes <% } else { %> No <% } %>
+            </li>
+            <li>
+              Basketball Nets: <% if (park.basketball_nets) { %> Yes <% } else {
+              %> No <% } %>
+            </li>
+            <li>
+              Tennis Courts: <% if (park.tennis_courts) { %> Yes <% } else { %>
+              No <% } %>
+            </li>
+            <li>
+              Soccer Nets: <% if (park.soccer_nets) { %> Yes <% } else { %> No
               <% } %>
             </li>
-            <li>Basketball Nets:
-              <% if (park.basketball_nets) { %>
-                Yes
-              <% } else { %>
-                No
-              <% } %>
+            <li>
+              Skate Park: <% if (park.skatepark) { %> Yes <% } else { %> No <% }
+              %>
             </li>
-            <li>Tennis Courts:
-              <% if (park.tennis_courts) { %>
-                Yes
-              <% } else { %>
-                No
-              <% } %>
+            <li>
+              Workout Equipment: <% if (park.workout_equipment) { %> Yes <% }
+              else { %> No <% } %>
             </li>
-            <li>Soccer Nets:
-              <% if (park.soccer_nets) { %>
-                Yes
-              <% } else { %>
-                No
-              <% } %>
+            <li>
+              Bathrooms: <% if (park.bathrooms) { %> Yes <% } else { %> No <% }
+              %>
             </li>
-            <li>Skate Park:
-              <% if (park.skatepark) { %>
-                Yes
-              <% } else { %>
-                No
-              <% } %>
-            </li>
-            <li>Workout Equipment:
-              <% if (park.workout_equipment) { %>
-                Yes
-              <% } else { %>
-                No
-              <% } %>
-            </li>
-            <li>Bathrooms:
-              <% if (park.bathrooms) { %>
-                Yes
-              <% } else { %>
-                No
-              <% } %>
-            </li>
-            <li>Water Fountain:
-              <% if (park.water_fountain) { %>
-                Yes
-              <% } else { %>
-                No
-              <% } %>
+            <li>
+              Water Fountain: <% if (park.water_fountain) { %> Yes <% } else {
+              %> No <% } %>
             </li>
           </ul>
         </article>
       </article>
     </section>
-</body>
-<!-- Leaflet stuff for maps below -->
-<script script type="text/javascript" src="/scripts/map_idScripts.js"></script>
-<script>
-  const park = <%- JSON.stringify(park) %>;
-  lat = park.coordinates_lat;
-  lon = park.coordinates_long;
-  L.marker([lat, lon]).addTo(mymap);
-</script>
-<!-- Leaflet stuff for maps above -->
-
+  </body>
+  <!-- Leaflet stuff for maps below -->
+  <script
+    script
+    type="text/javascript"
+    src="/scripts/map_idScripts.js"
+  ></script>
+  <script>
+    const park = <%- JSON.stringify(park) %>;
+    lat = park.coordinates_lat;
+    lon = park.coordinates_long;
+    L.marker([lat, lon]).addTo(mymap);
+  </script>
+  <!-- Leaflet stuff for maps above -->
 </html>

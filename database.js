@@ -1,3 +1,5 @@
+//This file contains all the query functions used throughout the various routes
+
 const getUserWithEmail = function (email, db) {
   //Define query
   const queryString = `
@@ -60,12 +62,12 @@ const getParksWithCreatorId = function (id, db) {
   JOIN users ON users.id = creator_id
   WHERE creator_id = $1 AND map_id IS null;
   `;
+
+  //Return promise for query
   return (
     db
       .query(queryString, [id])
       .then((result) => {
-        // console.log(result.rows[0])
-
         //If result is not found inside DB, return null
         if (result.rows.length === 0) {
           return null;
@@ -88,6 +90,8 @@ const getParksWithMapId = function (id, db) {
   JOIN maps ON maps.id = map_id
   WHERE maps.id = $1;
   `;
+
+  //Return promise for query
   return (
     db
       .query(queryString, [id])
@@ -113,12 +117,12 @@ const getParkWithParksId = function (id, db) {
   FROM parks
   WHERE parks.id = $1;
   `;
+
+  //Return promise for query
   return (
     db
       .query(queryString, [id])
       .then((result) => {
-        // console.log(result.rows[0])
-
         //If result is not found inside DB, return null
         if (result.rows.length === 0) {
           return null;
@@ -141,6 +145,8 @@ const getMapsWithCreatorId = function (id, db) {
   JOIN users ON users.id = creator_id
   WHERE creator_id = $1;
   `;
+
+  //Return promise for query
   return (
     db
       .query(queryString, [id])
@@ -289,6 +295,8 @@ const getAllMaps = function (db) {
   SELECT maps.id as map_id, maps.name as map_name, creator_id
   FROM maps;
   `;
+
+  //Return promise for query
   return (
     db
       .query(queryString)
@@ -314,12 +322,12 @@ const getAllParks = function (db) {
   FROM parks
   WHERE map_id IS null;
   `;
+
+  //Return promise for query
   return (
     db
       .query(queryString)
       .then((result) => {
-        // console.log(result.rows[0])
-
         //If result is not found inside DB, return null
         if (result.rows.length === 0) {
           return null;
@@ -383,7 +391,7 @@ const insertFavMap = function (userId, mapId, db) {
           return null;
         }
         //If result is found, return the array for the user
-        console.log('result:', result.rows)
+        console.log("result:", result.rows);
         return result.rows;
       })
       //Console log error if can't connect to DB
@@ -400,12 +408,12 @@ const getCurrentParkInfo = function (bodyParkId, db) {
   FROM parks
   WHERE id = $1 AND map_id is NULL;
   `;
+
+  //Return promise for query
   return (
     db
       .query(queryString, [bodyParkId])
       .then((result) => {
-        // console.log(result.rows[0])
-
         //If result is not found inside DB, return null
         if (result.rows.length === 0) {
           return null;
@@ -418,7 +426,7 @@ const getCurrentParkInfo = function (bodyParkId, db) {
         console.log(err.message);
       })
   );
-}
+};
 
 const getParksForFilterWithMapId = function (mapId, db) {
   //Define query
@@ -426,8 +434,9 @@ const getParksForFilterWithMapId = function (mapId, db) {
   SELECT id, map_id, park_name
   FROM parks
   WHERE map_id is NULL OR map_id = $1;
-  ;
   `;
+
+  //Return promise for query
   return (
     db
       .query(queryString, [mapId])
@@ -454,12 +463,12 @@ const getFavorites = function (userId, db) {
   JOIN maps ON map_id = maps.id
   WHERE favorites.user_id = $1;
   `;
+
+  //Return promise for query
   return (
     db
       .query(queryString, [userId])
       .then((result) => {
-        console.log("\nreturn from q: ", result.rows)
-
         //If result is not found inside DB, return null
         if (result.rows.length === 0) {
           return null;
@@ -472,9 +481,7 @@ const getFavorites = function (userId, db) {
         console.log(err.message);
       })
   );
-}
-
-
+};
 
 const getMapsWithMapId = function (mapId, db) {
   //Define query
@@ -483,12 +490,12 @@ const getMapsWithMapId = function (mapId, db) {
   FROM maps
   WHERE id = $1;
   `;
+
+  //Return promise for query
   return (
     db
       .query(queryString, [mapId])
       .then((result) => {
-        // console.log(result.rows[0])
-
         //If result is not found inside DB, return null
         if (result.rows.length === 0) {
           return null;
@@ -538,11 +545,12 @@ const getCheckedParksWithMapId = function (mapId, parkId, db) {
   FROM parks
   WHERE map_id = $1 AND id != $2;
   `;
+
+  //Return promise for query
   return (
     db
       .query(queryString, [mapId, parkId])
       .then((result) => {
-
         //If result is not found inside DB, return null
         if (result.rows.length === 0) {
           return null;
@@ -556,10 +564,6 @@ const getCheckedParksWithMapId = function (mapId, parkId, db) {
       })
   );
 };
-
-
-
-
 
 module.exports = {
   getUserWithEmail,
@@ -580,5 +584,5 @@ module.exports = {
   getFavorites,
   getMapsWithMapId,
   dropParkWithMapIdandParkId,
-  getCheckedParksWithMapId
+  getCheckedParksWithMapId,
 };

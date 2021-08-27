@@ -2,7 +2,12 @@
 <html lang="en">
   <head>
     <title>Profile</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
 
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
@@ -19,7 +24,13 @@
         <div class="section-title">
           My Maps
           <form action="/maps/new" method="GET">
-          <button type="submit" class="header-container-button btn btn-outline-dark" id="addButton">+</button>
+            <button
+              type="submit"
+              class="header-container-button btn btn-outline-dark"
+              id="addButton"
+            >
+              +
+            </button>
           </form>
         </div>
         <ul>
@@ -40,7 +51,13 @@
         <div class="section-title">
           Parks
           <form action="/parks/new" method="GET">
-          <button type="submit" class="header-container-button btn btn-outline-dark" id="addButton">+</button>
+            <button
+              type="submit"
+              class="header-container-button btn btn-outline-dark"
+              id="addButton"
+            >
+              +
+            </button>
           </form>
         </div>
         <ul>
@@ -57,18 +74,16 @@
         </ul>
       </section>
       <section class="profile-column">
-        <div class="section-title">
-        Favorite Maps
-        </div>
+        <div class="section-title">Favorite Maps</div>
         <ul>
           <% if (favsArray) { %> <% for (let i = 0; i < favsArray.length; i++) {
           %>
 
           <form action="/maps/<%= favsArray[i]. id %>" method="GET">
             <div class="xxx">
-              <button type="submit" class="btn btn-outline-dark" >
-              <%= favsArray[i].name %>
-            </button>
+              <button type="submit" class="btn btn-outline-dark">
+                <%= favsArray[i].name %>
+              </button>
             </div>
           </form>
 

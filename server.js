@@ -36,17 +36,12 @@ app.use(
 app.use(express.static("public"));
 
 // Separated Routes for each Resource
-
 const mapsRoutes = require("./routes/maps");
-// const mapsNewRoutes = require("./routes/maps_new");
 const mapsId = require("./routes/maps_id");
 const userProfile = require("./routes/profile");
 const parks = require("./routes/parks");
-// const parksNewRoutes = require("./routes/parks_new");
 const parksId = require("./routes/parks_id");
-
 const { mapsEditGet, mapsEditPost } = require("./routes/maps_edit");
-
 const { loginGet, loginPost } = require("./routes/login");
 const { registerGet, registerPost } = require("./routes/register");
 const { parksNewGet, parksNewPost } = require("./routes/parks_new");
@@ -56,7 +51,6 @@ const map_fav = require("./routes/map_fav");
 
 // Mount all resource routes
 app.use("/maps", mapsRoutes(db));
-// app.use("/maps/new", mapsNewRoutes(db));
 app.use("/maps/new", mapsNewGet(db));
 app.use("/maps/new", mapsNewPost(db));
 app.use("/maps", mapsId(db));
@@ -76,14 +70,7 @@ app.use("/maps/edit", mapsEditPost(db));
 
 // Home page
 app.get("/", (req, res) => {
-  const userId = req.cookies.user_id;
-  const templateVars = {
-    userId
-  }
-  // res.render("index", templateVars);
-
   res.redirect("maps");
-
 });
 
 app.listen(PORT, () => {

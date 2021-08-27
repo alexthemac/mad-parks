@@ -8,6 +8,7 @@ const map_fav = function (db) {
     const userId = req.cookies.user_id;
     const mapId = req.params.id;
 
+    //Call function to insert favorited map into favorites table
     insertFavMap(userId, mapId, db).then((result) => {
       res.redirect(`/maps/${mapId}`);
     });
