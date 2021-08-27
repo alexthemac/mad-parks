@@ -112,6 +112,11 @@ $primary-border-color: rgb(97, 104, 98);
   background-color: $secondary-icon-color
 }
 
-.xxx{
-  width: 100%;
+.btn-outline-dark{
+  width: 100%
+}
+
+#addButton {
+  width: 57%;
+  text-align: end;
 }

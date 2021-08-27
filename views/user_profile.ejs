@@ -19,7 +19,7 @@
         <div class="section-title">
           Maps
           <form action="/maps/new" method="GET">
-          <button type="submit" class="header-container-button btn btn-outline-dark">+</button>
+          <button type="submit" class="header-container-button btn btn-outline-dark" id="addButton">+</button>
           </form>
         </div>
         <ul>
@@ -40,7 +40,7 @@
         <div class="section-title">
           Parks
           <form action="/parks/new" method="GET">
-          <button type="submit" class="header-container-button btn btn-outline-dark">+</button>
+          <button type="submit" class="header-container-button btn btn-outline-dark" id="addButton">+</button>
           </form>
         </div>
         <ul>
@@ -66,7 +66,7 @@
 
           <form action="/maps/<%= favsArray[i]. id %>" method="GET">
             <div class="xxx">
-              <button type="submit" class="btn btn-outline-dark" style="width: 100%">
+              <button type="submit" class="btn btn-outline-dark" >
               <%= favsArray[i].name %>
             </button>
             </div>
