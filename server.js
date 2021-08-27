@@ -34,8 +34,10 @@ app.use(express.static("public"));
 
 
 // Separated Routes for each Resource
-const usersRoutes = require("./routes/users");
-const widgetsRoutes = require("./routes/widgets");
+
+// const usersRoutes = require("./routes/users");
+// const widgetsRoutes = require("./routes/widgets");
+
 const mapsRoutes = require("./routes/maps");
 // const mapsNewRoutes = require("./routes/maps_new");
 const mapsId = require("./routes/maps_id");
@@ -54,8 +56,10 @@ const { mapsNewGet, mapsNewPost } = require("./routes/maps_new");
 const map_fav = require("./routes/map_fav")
 
 // Mount all resource routes
-app.use("/api/users", usersRoutes(db));
-app.use("/api/widgets", widgetsRoutes(db));
+
+// app.use("/api/users", usersRoutes(db));
+// app.use("/api/widgets", widgetsRoutes(db));
+
 app.use("/maps", mapsRoutes(db));
 // app.use("/maps/new", mapsNewRoutes(db));
 app.use("/maps/new", mapsNewGet(db));
@@ -83,7 +87,10 @@ app.get("/", (req, res) => {
   const templateVars = {
     userId
   }
-  res.render("index", templateVars);
+  // res.render("index", templateVars);
+
+  res.redirect("maps");
+
 });
 
 app.listen(PORT, () => {

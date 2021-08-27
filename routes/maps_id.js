@@ -1,6 +1,7 @@
 const express = require('express');
 const router  = express.Router();
 const { getParksWithMapId, getUserWithId } = require('../database.js');
+const { loginGet } = require('./login.js');
 
 module.exports = (db) => {
   router.get("/:id", (req, res) => {
@@ -12,16 +13,24 @@ module.exports = (db) => {
     getParksWithMapId(mapId, db)
     .then((result) => {
 
+      let creatorId = null;
+
+      if (result) {
+        creatorId = result[0]["map_creator"];
+      };
+
       getUserWithId(userId, db)
       .then((resultName)=>{
 
         if (resultName) {
           const userName = resultName["name"];
+
           const templateVars = {
             userId,
             mapId,
             parksArray: result,
-            userName
+            userName,
+            creatorId
           };
           res.render('maps_id', templateVars);
         }
@@ -31,7 +40,8 @@ module.exports = (db) => {
           userId,
           mapId,
           parksArray: result,
-          userName
+          userName,
+          creatorId
         };
         res.render('maps_id', templateVars);
         // console.log("result from maps_id.js: ", result);
