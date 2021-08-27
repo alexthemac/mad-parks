@@ -47,12 +47,12 @@ const loginPost = function (db) {
 
       //If everything matches DB, set cookie and redirect to profile
       res.cookie("user_id", result.id);
-
       res.redirect("/profile");
     });
   });
 
   return router;
 };
+
 //Exports for use in server.js
 module.exports = { loginGet, loginPost };

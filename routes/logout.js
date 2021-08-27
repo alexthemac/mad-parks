@@ -3,9 +3,10 @@ const router = express.Router();
 
 const logoutPost = function (db) {
   router.post("/", (req, res) => {
-    res.clearCookie("user_id");
 
+    res.clearCookie("user_id");
     res.redirect("maps");
+
   });
   return router;
 };

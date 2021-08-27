@@ -1,6 +1,5 @@
 const express = require('express');
 const router  = express.Router();
-
 const { getUserWithId } = require('../database.js');
 
 module.exports = (db) => {

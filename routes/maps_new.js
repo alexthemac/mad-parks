@@ -2,15 +2,15 @@ const express = require("express");
 const router = express.Router();
 const { getAllParks, addMapToMaps, getCurrentParkInfo, addParkToParks, getUserWithId} = require("../database.js");
 
-
 const mapsNewGet = function (db) {
   router.get("/", (req, res) => {
     const userId = req.cookies.user_id;
 
-    getAllParks(db).then((result) => {
+    getAllParks(db)
+    .then((result) => {
 
       getUserWithId(userId, db)
-      .then((resultName)=>{
+      .then((resultName) => {
 
         const userName = resultName["name"];
         const templateVars = {
@@ -60,8 +60,6 @@ const mapsNewPost = function (db) {
   });
   return router;
 };
-
-
 
 //Exports for use in server.js
 module.exports = { mapsNewGet, mapsNewPost };

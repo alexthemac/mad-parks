@@ -6,19 +6,18 @@ const registerGet = function (db) {
   router.get("/", (req, res) => {
 
     const userId = req.cookies.user_id;
+
     const templateVars = {
       userId,
     };
-
-
     res.render('register', templateVars);
   });
   return router;
 }
 
-
 const registerPost = function (db) {
   router.post("/", (req, res) => {
+
     //Grab email and password entered into form
     const userName = req.body['name'];
     const email = req.body['email'];
@@ -42,14 +41,13 @@ const registerPost = function (db) {
       if(!result) {
         addUserToUsers(userName, email, password, db)
         .then(() =>
-        //Redirect to profile once done
-        res.redirect('/login')); //REPLACE THIS WITH /maps was working if login doesn't
+        //Redirect to login once user has been registered
+        res.redirect('/login'));
         return;
       }
       //If user name or email already registered, display error message page
       return res.status(400).send(`User name or email already registered. Please <a href='/register'>try again</a>`);
     });
-
   })
   return router;
 }
