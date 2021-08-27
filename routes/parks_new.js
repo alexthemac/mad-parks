@@ -1,7 +1,7 @@
 const express = require('express');
 const router  = express.Router();
 
-const { addParkToParks } = require('../database.js');
+const { addParkToParks, getUserWithId } = require('../database.js');
 
 
 const parksNewGet = function (db) {
@@ -13,11 +13,16 @@ const parksNewGet = function (db) {
       return res.redirect("../login");
     }
 
-    const templateVars = {
-      userId,
-    };
+    getUserWithId(userId, db)
+    .then((result)=>{
 
-    res.render('parks_new', templateVars);
+      const userName = result["name"];
+      const templateVars = {
+        userId,
+        userName
+      };
+      res.render('parks_new', templateVars);
+    })
   });
   return router;
 }

@@ -3,7 +3,8 @@ const router = express.Router();
 const {
   getParksWithCreatorId,
   getMapsWithCreatorId,
-  getFavorites
+  getFavorites,
+  getUserWithId
 } = require("../database.js");
 
 module.exports = (db) => {
@@ -24,13 +25,21 @@ module.exports = (db) => {
       console.log("values[1]:  ", values[1]);
       console.log("values[2]:  ", values[2]);
 
-      const templateVars = {
-        userId,
-        mapsArray: values[0],
-        parksArray: values[1],
-        favsArray: values[2]
-      };
-      res.render("user_profile", templateVars);
+      getUserWithId(userId, db)
+      .then((result) => {
+
+        const userName = result["name"];
+
+        const templateVars = {
+          userId,
+          mapsArray: values[0],
+          parksArray: values[1],
+          favsArray: values[2],
+          userName
+        };
+        res.render("user_profile", templateVars);
+      })
+
     });
   });
 

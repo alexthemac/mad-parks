@@ -8,7 +8,8 @@ const {
   getCurrentParkInfo,
   getCheckedParksWithMapId,
   getParksWithMapId,
-  addParkToParks
+  addParkToParks,
+  getUserWithId
 } = require("../database.js");
 
 const parksFilter = (result) => {
@@ -54,14 +55,20 @@ const mapsEditGet = function (db) {
         //   parksFilter(values[1])
         // );
 
-        const templateVars = {
-          userId,
-          mapName : values[2].name,
-          mapDesc : values[2].description,
-          parksFilteredArray : parksFilter(values[1]),
-          mapId
-        };
-        res.render("maps_edit", templateVars);
+        getUserWithId(userId, db)
+        .then((resultName)=>{
+
+          const userName = resultName["name"];
+          const templateVars = {
+            userId,
+            mapName : values[2].name,
+            mapDesc : values[2].description,
+            parksFilteredArray : parksFilter(values[1]),
+            mapId,
+            userName
+          };
+          res.render("maps_edit", templateVars);
+        })
       }
     );
   });
