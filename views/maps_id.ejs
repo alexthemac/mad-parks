@@ -20,9 +20,10 @@
 <body>
   <%- include('partials/_header') %>
     <section class="body-container">
+      <span class="section-title">
       <% if(userId){ %>
         <% if (parksArray) { %>
-      <span class="section-title"><%= parksArray[0].map_name%>
+        <%= parksArray[0].map_name%>
         <% } %>
         <form action="/map_fav/<%=mapId%>" method="POST">
           <button type="submit" class="btn btn-light">Favorite ⭐</button>
