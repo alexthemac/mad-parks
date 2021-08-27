@@ -3,13 +3,13 @@
   justify-content: space-between;
   height: 5em;
   padding: 1em;
-  background-color: #33a739;
+  background-color: #08d5c7;
 }
 
 #header-container-left {
   display: flex;
   align-items: center;
-  color: #151f68;
+  color: white;
   font-size: 2rem;
 }
 
@@ -25,7 +25,7 @@
   margin: 1em;
   padding: 1em;
   font-size: 1rem;
-  color: #151f68;
+  color: white;
 }
 
 #loggedIn {
@@ -35,7 +35,7 @@
 
 .body-container {
   padding: 1em;
-  background-color: #eeeeee;
+  background-color: white;
 }
 
 .section-title {
@@ -97,9 +97,17 @@
 
 .btn-outline-dark {
   width: 100%;
+  color: black;
 }
 
 #addButton {
   width: 57%;
   text-align: end;
+<<<<<<< HEAD
+=======
+}
+
+#smbtn {
+  width: 250px;
+>>>>>>> 29c07e0266b3143974f75c1be62ae8fa44da53f4
 }

@@ -1,10 +1,10 @@
-$primary-background-color: rgb(51, 167, 57);
-$secondary-background-color: rgb(238, 238, 238);
+$primary-background-color: rgb(8, 213, 199);
+$secondary-background-color: rgb(255, 255, 255);
 $primary-icon-color: rgb(168, 232, 123);
 $secondary-icon-color: rgb(52, 160, 164);
 
 
-$primary-text-color: rgb(21, 31, 104);
+$primary-text-color: rgb(255, 255, 255);
 $secondary-text-color: rgb(0, 0, 0);
 $tertiary-text-color: rgb(255, 255, 255);
 
@@ -118,10 +118,15 @@ $primary-border-color: rgb(97, 104, 98);
 }
 
 .btn-outline-dark{
-  width: 100%
+  width: 100%;
+  color: $secondary-text-color
 }
 
 #addButton {
   width: 57%;
   text-align: end;
+}
+
+#smbtn {
+  width: 250px;
 }

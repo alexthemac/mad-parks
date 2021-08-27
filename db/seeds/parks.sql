@@ -40,4 +40,7 @@ insert into parks ( park_name, street_address, city, province, park_image, coord
 insert into parks ( park_name, street_address, city, province, park_image, coordinates_long, coordinates_lat, description, basketball_nets, tennis_courts, soccer_nets, skatepark, workout_equipment, bathrooms, water_fountain, dog_park, creator_id, map_id) values ('Goldenrod Community Grden', '70 Columbine Rd', 'Ottawa', 'On', 'https://images.unsplash.com/photo-1523849161192-3a6e717932c9?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTV8fHBhcmt8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60', -75.73775939054214, 45.41004057708812, 'Classic downtown experiance.', true, false, false, true, true, false, true, false, 1, 3);
 insert into parks ( park_name, street_address, city, province, park_image, coordinates_long, coordinates_lat, description, basketball_nets, tennis_courts, soccer_nets, skatepark, workout_equipment, bathrooms, water_fountain, dog_park, creator_id, map_id) values ('Garden Bay Marine Park', '585 Meadow Ridge Terrace', 'Garden Bay', 'BC', 'https://images.unsplash.com/photo-1568480289356-5a75d0fd47fc?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8cGFya3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60', -124.00896495006117, 49.64056586238141, 'Great place for boats and other marine fun!', false, true, true, false, false, true, true, true, 1, 3);
 
+---------------------------------
+
+
 
