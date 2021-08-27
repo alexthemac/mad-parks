@@ -9,7 +9,7 @@ const {
   getCheckedParksWithMapId,
   getParksWithMapId,
   addParkToParks,
-  getUserWithId
+  getUserWithId,
 } = require("../database.js");
 
 const parksFilter = (result) => {
@@ -43,41 +43,27 @@ const mapsEditGet = function (db) {
     Promise.all([
       getAllParks(db),
       getParksForFilterWithMapId(mapId, db),
-      getMapsWithMapId(mapId, db)
-      ]).then(
-      (values) => {
-        // console.log("\nALL PARKS:  ", values[0]);
-        // console.log("\n PARKS:  ", values[1]);
-        // console.log("\n MAP:  ", values[2]);
-
-        // console.log(
-        //   "\n LOOK HERE\nwhat is returned from promise all/func: ",
-        //   parksFilter(values[1])
-        // );
-
-        getUserWithId(userId, db)
-        .then((resultName)=>{
-
-          const userName = resultName["name"];
-          const templateVars = {
-            userId,
-            mapName : values[2].name,
-            mapDesc : values[2].description,
-            parksFilteredArray : parksFilter(values[1]),
-            mapId,
-            userName
-          };
-          res.render("maps_edit", templateVars);
-        })
-      }
-    );
+      getMapsWithMapId(mapId, db),
+    ]).then((values) => {
+      getUserWithId(userId, db).then((resultName) => {
+        const userName = resultName["name"];
+        const templateVars = {
+          userId,
+          mapName: values[2].name,
+          mapDesc: values[2].description,
+          parksFilteredArray: parksFilter(values[1]),
+          mapId,
+          userName,
+        };
+        res.render("maps_edit", templateVars);
+      });
+    });
   });
   return router;
 };
 
 const mapsEditPost = function (db) {
   router.post("/:id", (req, res) => {
-
     const creator_Id = req.cookies.user_id;
 
     const map_id = req.params.id;
@@ -96,57 +82,52 @@ const mapsEditPost = function (db) {
     console.log("checked keys:", checkedParksArray);
 
     getParksWithMapId(map_id, db)
-    .then((result) => {
-      console.log(result)
+      .then((result) => {
+        console.log(result);
 
-      for (const res of result) {
-        let add = true;
-        for (parks of checkedParksArray) {
-          if (res['park_id'] == parks) {
-            add = false;
+        for (const res of result) {
+          let add = true;
+          for (parks of checkedParksArray) {
+            if (res["park_id"] == parks) {
+              add = false;
+            }
+          }
+          if (add === true) {
+            dropTheseParksArray.push(res);
           }
         }
-        if (add === true) {
-          dropTheseParksArray.push(res);
+        console.log("droptheseParks:", dropTheseParksArray);
+
+        for (const dropThisPark of dropTheseParksArray) {
+          dropParkWithMapIdandParkId(map_id, dropThisPark["park_id"], db);
         }
-      }
-      console.log("droptheseParks:", dropTheseParksArray);
+      })
+      .then(() => {
+        //NOW WE HAVE dropped the unchecked ones, now we need to add the checked ones.
 
-      for (const dropThisPark of dropTheseParksArray) {
+        // Loop through each property from req.body and only grab the parks that are check marked
+        for (const property in req.body) {
+          if (property != "map_name" && property != "map_description") {
+            const bodyParkId = property;
 
-        dropParkWithMapIdandParkId(map_id, dropThisPark['park_id'], db)
-
-      }
-    })
-    .then(() => {
-     //NOW WE HAVE dropped the unchecked ones, now we need to add the checked ones.
-
-      // Loop through each property from req.body and only grab the parks that are check marked
-      for (const property in req.body) {
-        if (property != 'map_name' && property != 'map_description') {
-
-          const bodyParkId = property;
-
-          // Grab the current parks info from the DB
-          getCurrentParkInfo(bodyParkId, db)
-          .then((result) => {
-            if (result) {
-              // console.log("getCurrentParkInfo result:",result)
-              const parkInfo = result;
-              //Update parkInfo map id key from null to map id from the newly created map
-              parkInfo['map_id'] = map_id;
-              addParkToParks(parkInfo, db)
-            }
-          })
+            // Grab the current parks info from the DB
+            getCurrentParkInfo(bodyParkId, db).then((result) => {
+              if (result) {
+                // console.log("getCurrentParkInfo result:",result)
+                const parkInfo = result;
+                //Update parkInfo map id key from null to map id from the newly created map
+                parkInfo["map_id"] = map_id;
+                addParkToParks(parkInfo, db);
+              }
+            });
+          }
         }
-      }
-
-    })
+      });
     setTimeout(() => res.redirect(`/maps/${map_id}`), 100);
-     // res.redirect(`/maps/${map_id}`)
+    // res.redirect(`/maps/${map_id}`)
   });
   return router;
-}
+};
 
 //Exports for use in server.js
 module.exports = { mapsEditGet, mapsEditPost };
